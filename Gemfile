@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.13'
+gem 'jquery-rails'
 gem 'pg'
 gem 'devise' # https://github.com/plataformatec/devise
 gem 'yahoofinance' # https://github.com/herval/yahoo-finance
@@ -18,4 +19,10 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-gem 'jquery-rails'
+group :test do
+  gem 'capybara'
+  gem 'cucumber-rails'
+  gem 'database_cleaner'
+  gem 'rspec-rails'
+  gem 'launchy'
+end
