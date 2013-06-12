@@ -11,15 +11,23 @@ Project Status
 [![Build Status](https://travis-ci.org/virajparikh/RailStocks.png)](https://travis-ci.org/virajparikh/RailStocks)
 
 
-
-
 Features and Instructions
 --------------------------
-
-1. User authentication
-2. Portfolio creation
+1. User sign-in and authentication
+2. Portfolio(s) creation
 3. Add, edit, delete tickers in a portfolio
+4. Obtain a range of about 80 stock and valuation data points from Yahoo Finance
+5. Historical stock prices for customized date ranges
+6. View a pre-packaged stock and valuation summary of your portfolio
 
+Wireframes
+----------
+See the Balsamiq_wireframes folder for the design schema and sitemap.
+
+Gems
+----
+Devise - user sign-in and authentication
+YahooFinance - stock data
 
 Bugs
 ----
