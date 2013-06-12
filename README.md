@@ -16,6 +16,9 @@ Project Status
 Features and Instructions
 --------------------------
 
+1. User authentication
+2. Portfolio creation
+3. Add, edit, delete tickers in a portfolio
 
 
 Bugs
