@@ -1,11 +1,11 @@
 Feature: Users can log in and log out
-  In order to save my projcts
+  In order to save my portfolios
   As a user
   I want to log in
 
 Scenario: Happy Path
   Given the user “bob@example.com” with password “password1”
-  When I got to the homepage
+  When I go to the homepage
   And I click “Log In”
   And I fill in "password1" for "Password"
   And I press "Log In"

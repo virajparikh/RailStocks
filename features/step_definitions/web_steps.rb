@@ -11,7 +11,7 @@ When(/^I click “Log In”$/) do
 end
 
 When(/^I fill in "(.*?)" for "(.*?)"$/) do |arg1, arg2|
-  pending # express the regexp above with the code you wish you had
+  fill_in arg2, with: arg1
 end
 
 When(/^I press "(.*?)"$/) do |arg1|
