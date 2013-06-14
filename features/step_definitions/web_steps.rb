@@ -1,21 +1,22 @@
-Given(/^the user “bob@example\.com” with password “password(\d+)”$/) do |arg1|
-  pending # express the regexp above with the code you wish you had
+Given(/^the user "(.*?)" with password "(.*?)"$/) do |email, password|
+  user = User.create( email: email, password: password)
+  refute user.new_record?
 end
 
-When(/^I got to the homepage$/) do
-  pending # express the regexp above with the code you wish you had
+When(/^I go to the homepage$/) do
+  visit "/"
 end
 
-When(/^I click “Log In”$/) do
-  pending # express the regexp above with the code you wish you had
+And(/^I (?:click|press) "(.*?)"$/) do |text|
+  click_link_or_button text
 end
 
-When(/^I fill in "(.*?)" for "(.*?)"$/) do |arg1, arg2|
-  fill_in arg2, with: arg1
+And(/^I should not see "(.*?)"$/) do |content|
+  page.should_not have_content content
 end
 
-When(/^I press "(.*?)"$/) do |arg1|
-  pending # express the regexp above with the code you wish you had
+When(/^I fill in "(.*?)" for "(.*?)"$/) do |value, email|
+  fill_in email, with: value
 end
 
 Then(/^I should see "(.*?)"$/) do |arg1|
@@ -23,5 +24,21 @@ Then(/^I should see "(.*?)"$/) do |arg1|
 end
 
 Then(/^I should not see "(.*?)"$/) do |arg1|
+  pending # express the regexp above with the code you wish you had
+end
+
+Then(/^I should see the Railstocks app page$/) do
+  pending # express the regexp above with the code you wish you had
+end
+
+When(/^I should not see "(.*?)"$/) do |arg1|
+  pending # express the regexp above with the code you wish you had
+end
+
+Then(/^I should see links to "(.*?)", "(.*?)", and "(.*?)"$/) do |arg1, arg2, arg3|
+  pending # express the regexp above with the code you wish you had
+end
+
+Then(/^I should still see "(.*?)" for "(.*?)"$/) do |arg1, arg2|
   pending # express the regexp above with the code you wish you had
 end
