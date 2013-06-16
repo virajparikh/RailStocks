@@ -22,7 +22,7 @@ Features
 
 User Experience
 -
-1. When I come to the RailStocks site for the first time, I will see buttons to:
+1. When you go to the RailStocks site for the first time, you will see buttons to:
 -
 - Register for RailStocks
 - Log into RailStocks
@@ -33,30 +33,30 @@ User Experience
 - - Investor education resources
 - Help
 
-2. If I register for a RailStocks account, I will then see:
+2. If you register for a RailStocks account, you will see:
 -
-- my e-mail address (which is my username)
+- your e-mail address (which is your username)
 - button to Log Out
-- button to go to RailStocks.  If I go to RailStocks, I will see a:
+- button to go to RailStocks.  If you go to RailStocks, you will see a:
 - - Create Portfolio button to create a stock portfolio or multiple portfolios.  You will then be given the option to:
 - - - Save the portfolio(s)
 - - - Add and delete stock tickers in a portfolio
 - - - Evaluate a portfolio of stocks on a variety of metrics that are available through Yahoo Finance
-field to input a stock ticker.  This will return:
+- - - Field to input a stock ticker.  This will return:
 - - - - data and analytics
 - - - - historical price quote options
 
-3. If I just go directly to RailStocks without registering for an account, I will then see a list of functions:
+3. If you go directly to RailStocks without registering for an account, you will see a list of functions:
 -
 - Create Portfolio button  
-- - If pressed, be prompted to register for an account.  Cannot create portfolio(s) without registering
+- - If pressed, you be prompted to register for an account.  You cannot create portfolio(s) without registering
 
 - - User is prompt to return to #1
 - Input ticker field.  This will return:
 - - data and analytics
 - - historical price quote options
 
-4. Upon returning to RailStocks, be given the option to:
+4. Upon returning to RailStocks, you be given the option to:
 -
 - Register for an account
 - Log into current account.  User sees:

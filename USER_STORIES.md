@@ -39,7 +39,7 @@ User Experience:
 - - - Save the portfolio(s)
 - - - Add and delete stock tickers in a portfolio
 - - - Evaluate a portfolio of stocks on a variety of metrics that are available through Yahoo Finance
-field to input a stock ticker.  This will return:
+- - - Field to input a stock ticker.  This will return:
 - - - - data and analytics
 - - - - historical price quote options
 
