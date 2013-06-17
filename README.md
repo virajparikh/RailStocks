@@ -2,6 +2,10 @@ Purpose
 -------
 RailStocks is a portfolio management and valuation app.
 
+You can find the app here: http://railstocks.herokuapp.com/ 
+
+A Javascript version is here: https://nss_equityresearch.backliftapp.com/pages/Portfolio_2.html
+
 
 Project Status
 --------------
@@ -68,7 +72,7 @@ User Experience
 - Help button
 
 
-Gems Used
+Key Gems Used
 --------
 Devise - user sign-in and authentication
 YahooFinance - stock data
