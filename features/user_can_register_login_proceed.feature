@@ -27,7 +27,7 @@ Scenario: Successful Log-In
 Scenario: Unsuccessful Registration - bad username
   When I go to the homepage
   And I click "Register"
-  And I should not see "Register" or "Log In"
+  And I should not see "Register"
   And I fill in "bobexample.com" for "Email"
   And I fill in "password1" for "Password"
   And I fill in "password1" for "Password confirmation"
@@ -43,6 +43,7 @@ Scenario: Unsuccessful Registration - bad password
   And I fill in "p" for "Password"
   And I fill in "p1" for "Password confirmation"
   And I click "Sign up"
+  And I should see "Sign up"
   And I should see "Sign in"
   And I should see "Take me to RailStocks"
 
