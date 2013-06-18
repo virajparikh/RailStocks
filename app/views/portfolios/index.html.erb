@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- {{$ styles }} -->
+
+    <meta charset="utf-8">
+    <title>NSS Rails Project: Viraj Parikh's RailStocks App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="Stock portfolio and research tool using Yahoo! Finance data" content="">
+    
+  </head>
+  
+  <body>
+
+    <!-- top navigation bar -->
+    <div class="navbar navbar-static-top">
+      <div class="navbar-inner">
+        <div id="main-nav"></div>
+      </div>
+    </div>
+
+    <!-- top portfolio buttons -->
+
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <div class="nav-collapse collapse">
+             <ul class="pull-right">Welcome, <%= link_to current_user.email, dashboard_index_path %>.  Not you?  <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>  
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+    	<a id="createPortfolioModalBtn" href="#createPortfolioModal" role="button" class="btn btn-success" data-toggle="modal">Create Portfolio</a>
+
+      <div class="hero-unit">        
+
+        <div class="text-center">
+
+          <h3 id="portfolioNameInHeader"> </h3>
+           
+          <table id="portfolioAnalysisTable" class="table table-striped tablesorter">
+            <thead>
+              <tr>
+                <th>Ticker</th>
+                <th>Company Name</th>
+                <th>Market Cap</th>
+                <th>Fwd Price/Earnings</th>
+                <th>Price/ BookValue</th>
+                <th>ST Momentum</th>
+                <th>LT Momentum</th>
+              </tr>
+            </thead> 
+            <tbody id="stockTable">              
+              <!-- Table rows & data added by js function addStocksToTable -->
+            </tbody>
+
+          </table>
+
+        </div><!-- /.text-center -->
+
+        <!-- CREATE PORTFOLIO MODAL
+        ================================ -->
+
+        <div id="createPortfolioModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          
+          <div class="modal-header">
+            <button type="button" class="cancelBtn close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="myModalLabel">Create Your Portfolio<small> Input your stock tickers here</small></h3>
+          </div>
+          
+          <div class="modal-body">
+            <form id="createPortfolioForm" class="form-horizontal">
+              <div class="control-group">
+                <label class="control-label" for="Name">Portfolio:</label>
+                <div class="controls">
+                  <input type="text" id="createPortfolioName" class="stockInputs clearInputs" name="Portfolio Name" placeholder="Portfolio Name (Required)" class="required" minlength="1" required/>
+                </div>
+              </div>
+
+              <div class="control-group">
+                <label class="control-label" for="tickers">Stocks:</label>
+                <div class="controls">
+                  <textarea rows="3" type="text" id="addTickerInput" class="stockInputs clearInputs" name="Tickers" placeholder="Tickers (separated by spaces)" class="required" minlength="1" required/></textarea>
+                  
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <div class="modal-footer">
+            <button class="cancelBtn btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+            <button id="createPortfolioBtn" class="btn btn-success" data-dismiss="modal" aria-hidden="true">Add Portfolio</button>
+          </div>
+        </div>
+
+
+        <!-- EDIT PORTFOLIO MODAL
+        ================================ -->
+
+        <div id="editPortfolioModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-header">
+            <button type="button" class="cancelBtn close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="myModalLabel">Edit Portfolio<small>  Add or Delete your stock tickers here</small></h3>
+        </div>
+        
+        <div class="modal-body">
+          <form id="editPortfolioForm" class="form-horizontal">
+            <div class="control-group">
+              <label class="control-label" for="Name">Portfolio:</label>
+                <div class="controls">
+                  <h4 id="updatePortfolioName" class="stockInputs clearInputs" name="Portfolio Name" ></h4>
+                </div>
+            </div>
+
+              <div class="control-group">
+                <label class="control-label" for="tickers">Stocks:</label>
+                <div class="controls">
+                  <textarea rows="3"  type="text" id="updateTickerInput" class="stockInputs clearInputs" name="Tickers" placeholder="Tickers (separated by spaces)" required></textarea>
+                </div>
+              </div>
+          </form>
+        </div>
+
+          <div class="modal-footer">
+            <button class="cancelBtn btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+            <button id="submitUpdatePortfolioBtn" class="btn btn-warning" data-dismiss="modal" aria-hidden="true">Update Portfolio</button>
+          </div>
+        </div>
+
+        <!-- DELETE PORTFOLIO MODAL
+        ================================ -->
+<!-- 
+        <div id="deletePortfolioModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-header">
+            <button type="button" class="cancelBtn close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="myModalLabel">WARNING!</h3>
+          </div>
+
+          <div class="modal-body">
+            <form id="deletePortfolioForm" class="form-horizontal">
+              <h4 id="myModalLabel">Are you sure you want to delete this portfolio?</h4>
+            </form>
+          </div>
+
+          <div class="modal-footer">
+            <button class="cancelBtn btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+            <button id="deletePortfolioBtn" class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Delete Portfolio</button>
+          </div>
+        </div> -->
+
+
+        <!-- DELETE INDIVIDUAL TICKER CONFIRMATION MODAL
+        ================================ -->
+        <div id="deleteStockModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-header">
+            <button type="button" class="cancelBtn close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="myModalLabel">Delete this stock?</h3>
+          </div>
+          <div class="modal-body">
+            <p>Are you sure?</p>
+          </div>
+          <div class="modal-footer">
+            <button class="cancelBtn btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+            <button id="deleteStockBtn" class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Delete Stock</button>
+          </div>
+        </div>
+
+
+        <!-- Portfolio List
+        ========================== -->
+        <br>
+
+        <div class="text-center">
+
+          <h4>Portfolio List</h4>
+           
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th></th>
+              </tr>
+            </thead> 
+            <tbody id="portfolioList">              
+              <!-- Portfolio list added by js function addPortfolioToTable -->
+            </tbody>
+          </table>
+        </div><!-- /.text-center -->
+
+
+           <!-- {{$ scripts }} -->
+           <!-- main logic: assets/js/pages/portfolio.js -->
+           <!-- process calculations: assets/js/domain/stock.js -->
+        
+  </body>
+
+
+</html>
+
+
+  
+

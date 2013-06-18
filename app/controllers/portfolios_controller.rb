@@ -1,10 +1,11 @@
 require 'YahooFinance'
 
 class PortfoliosController < ApplicationController
+  before_filter :authenticate_user!
 
-  def initialize params
-    @params = params
-  end
+  # def initialize params
+  #   @params = params
+  # end
 
   def index
     portfolios = Portfolio.all
