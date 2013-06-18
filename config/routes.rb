@@ -1,8 +1,11 @@
 Railstocks::Application.routes.draw do
   devise_for :users
   
-  resources :dashboard
   root to: "home#index"
+
+  resources :dashboard
+  resources :portfolio
+  resources :ticker
 
 
   # The priority is based upon order of creation:

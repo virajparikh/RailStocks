@@ -1,21 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Railstocks</title>
+  
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
   
 </head>
-<body>
-  <div class="container">
 
+<body>
+<div class="container">
+
+<h1>Railstocks</h1>
 <div id="user_nav">
   <% if user_signed_in? %>
     Signed in as <%= current_user.email %>. Not you?
     <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
   <% end %>
-  <h4><a class="btn btn-info" href="*">Take me to RailStocks</a></h4>
+  
 </div>
 
  
@@ -27,6 +29,7 @@
 <p class="notice"><%= notice %></p>
 <p class="alert"><%= alert %></p> -->
 <%= yield %>
+<h4><a class="btn btn-info" href="*">Take me to RailStocks</a></h4>
 
   </div>
 </body>

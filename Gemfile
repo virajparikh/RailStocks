@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.13'
+gem 'haml-rails'
 gem 'jquery-rails'
 gem 'bootstrap-sass'
 gem 'pg'
@@ -18,8 +19,12 @@ end
 
 group :test do
   gem 'capybara'
-  gem 'cucumber-rails'
+  gem 'cucumber-rails', require: false
   gem 'database_cleaner'
   gem 'rspec-rails'
   gem 'launchy'
+end
+
+group :development do
+  gem 'html2haml'
 end
