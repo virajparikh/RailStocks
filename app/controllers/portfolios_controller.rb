@@ -1,6 +1,8 @@
+require 'YahooFinance'
+
 class PortfoliosController < ApplicationController
-  
-   def initialize params
+
+  def initialize params
     @params = params
   end
 
@@ -33,5 +35,5 @@ class PortfoliosController < ApplicationController
   def params
     @params
   end
-  
+
 end

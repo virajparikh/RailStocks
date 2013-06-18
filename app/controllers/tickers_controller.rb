@@ -1,6 +1,5 @@
 class TickersController < ApplicationController
-
-   def initialize params
+  def initialize params
     @portfolio_id = Portfolio.where(name: params[:portfolio][:name]).first.id
   end
 
