@@ -1,5 +1,3 @@
-require 'YahooFinance'
-
 class PortfoliosController < ApplicationController
   before_filter :authenticate_user!
 
@@ -15,7 +13,7 @@ class PortfoliosController < ApplicationController
   end
 
   def create
-    portfolio = Portfolio.new(params[:portfolio])
+    portfolio = Portfolio.new(params)
     if portfolio.save
       puts "Success!  Your '#{portfolio.name}' portfolio has been created."
     else  

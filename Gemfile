@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.13'
 gem 'haml-rails'
 gem 'jquery-rails'
-gem 'bootstrap-sass'
+gem 'twitter-bootstrap-rails'
 gem 'pg'
 gem 'devise' # https://github.com/plataformatec/devise
 gem 'yahoofinance' # https://github.com/herval/yahoo-finance
@@ -15,6 +15,10 @@ group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
+  gem 'better_errors'
+  gem 'pry-plus'
+  gem 'pry-rails'
+  gem 'pry-debugger'
 end
 
 group :test do

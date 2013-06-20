@@ -5,7 +5,6 @@ Railstocks::Application.routes.draw do
 
   resources :dashboard
   resources :portfolios
-  resources :tickers
 
 
   # The priority is based upon order of creation:

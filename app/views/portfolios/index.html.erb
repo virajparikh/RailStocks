@@ -13,13 +13,6 @@
   <body>
 
     <!-- top navigation bar -->
-    <div class="navbar navbar-static-top">
-      <div class="navbar-inner">
-        <div id="main-nav"></div>
-      </div>
-    </div>
-
-    <!-- top portfolio buttons -->
 
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
@@ -29,20 +22,16 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <div class="nav-collapse collapse">
+          <div class="nav-collapse collapse"></br>
              <ul class="black-bar pull-right">Welcome, <%= link_to current_user.email, dashboard_index_path %>.   Not you?  <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>  
             </ul>
           </div><!--/.nav-collapse -->
         </div>
       </div>
     </div>
+    <!-- <div class="container"> -->
 
-    <div class="container">
-    	<a id="createPortfolioModalBtn" href="#createPortfolioModal" role="button" class="btn btn-success" data-toggle="modal">Create Portfolio</a>
-
-      <div class="hero-unit">        
-
-        <div class="text-center">
+        <!-- <div class="text-center"> -->
 
           <h3 id="portfolioNameInHeader"> </h3>
            
@@ -64,7 +53,7 @@
 
           </table>
 
-        </div><!-- /.text-center -->
+        <!-- </div> -->
 
         <!-- CREATE PORTFOLIO MODAL
         ================================ -->
@@ -176,11 +165,12 @@
 
         <!-- Portfolio List
         ========================== -->
-        <br>
-
+        </br>
+        <a id="createPortfolioModalBtn" href="#createPortfolioModal" role="button" class="btn btn-success" data-toggle="modal">Create Portfolio</a>
+        <h4>Portfolio List</h4>
         <div class="text-center">
 
-          <h4>Portfolio List</h4>
+          
            
           <table class="table table-striped">
             <thead>
@@ -193,6 +183,8 @@
             </tbody>
           </table>
         </div><!-- /.text-center -->
+    <!-- </div> -->
+    </div>
 
 
            <!-- {{$ scripts }} -->

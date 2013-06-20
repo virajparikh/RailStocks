@@ -1,17 +1,17 @@
-    var StockDomainObject = function(stock){
-    	this.stock = stock;
+    var TickerDomainObject = function(ticker){
+    	this.ticker = ticker;
     };
 
-    StockDomainObject.prototype.calcSTMomentum = function() {
-			var stock = this.stock,
-				price_GT_50Day_GT_200Day = stock.LastTradePriceOnly > stock.FiftydayMovingAverage
-											&& stock.FiftydayMovingAverage > stock.TwoHundreddayMovingAverage,
-				price_LT_50Day_GT_200Day = stock.LastTradePriceOnly < stock.FiftydayMovingAverage 
-				  						    && stock.FiftydayMovingAverage > stock.TwoHundreddayMovingAverage,
-				price_GT_50day_LT_200Day = stock.LastTradePriceOnly > stock.FiftydayMovingAverage 
-					   						&& stock.FiftydayMovingAverage < stock.TwoHundreddayMovingAverage,
-				price_LT_50day_LT_200Day = stock.LastTradePriceOnly < stock.FiftydayMovingAverage 
-					   						&& stock.FiftydayMovingAverage < stock.TwoHundreddayMovingAverage;
+    TickerDomainObject.prototype.calcSTMomentum = function() {
+			var ticker = this.ticker,
+				price_GT_50Day_GT_200Day = ticker.LastTradePriceOnly > ticker.FiftydayMovingAverage
+											&& ticker.FiftydayMovingAverage > ticker.TwoHundreddayMovingAverage,
+				price_LT_50Day_GT_200Day = ticker.LastTradePriceOnly < ticker.FiftydayMovingAverage 
+				  						    && ticker.FiftydayMovingAverage > ticker.TwoHundreddayMovingAverage,
+				price_GT_50day_LT_200Day = ticker.LastTradePriceOnly > ticker.FiftydayMovingAverage 
+					   						&& ticker.FiftydayMovingAverage < ticker.TwoHundreddayMovingAverage,
+				price_LT_50day_LT_200Day = ticker.LastTradePriceOnly < ticker.FiftydayMovingAverage 
+					   						&& ticker.FiftydayMovingAverage < ticker.TwoHundreddayMovingAverage;
 
 			if ( price_GT_50Day_GT_200Day ) {
 				return "Positive ST Momentum"
@@ -27,20 +27,20 @@
 				}
 	};
     
-    StockDomainObject.prototype.calcLTMomentum = function(){
-		if (this.stock.FiftydayMovingAverage > this.stock.TwoHundreddayMovingAverage) { //_50Day_GT_200Day = stock.FiftydayMovingAverage > stock.TwoHundreddayMovingAverage,
+    TickerDomainObject.prototype.calcLTMomentum = function(){
+		if (this.ticker.FiftydayMovingAverage > this.ticker.TwoHundreddayMovingAverage) { //_50Day_GT_200Day = ticker.FiftydayMovingAverage > ticker.TwoHundreddayMovingAverage,
 			return "Positive LT Momentum";
 		} else {
 			return "Negative LT Momentum";
 		}		
 	};  
 
-    StockDomainObject.prototype.calcForwardPE = function(){
-		return parseFloat(this.stock.LastTradePriceOnly, 10) / parseFloat(this.stock.EPSEstimateNextYear, 10);
+    TickerDomainObject.prototype.calcForwardPE = function(){
+		return parseFloat(this.ticker.LastTradePriceOnly, 10) / parseFloat(this.ticker.EPSEstimateNextYear, 10);
     }
 	
-	StockDomainObject.prototype.calcPriceToBook = function(){
-    	return parseFloat(this.stock.LastTradePriceOnly, 10) / parseFloat(this.stock.BookValue, 10);
+	TickerDomainObject.prototype.calcPriceToBook = function(){
+    	return parseFloat(this.ticker.LastTradePriceOnly, 10) / parseFloat(this.ticker.BookValue, 10);
     };
 
 	
