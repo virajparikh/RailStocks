@@ -11,7 +11,6 @@ Scenario: Successful Registration
   And I fill in "password1" for "Password confirmation"
   And I click "Sign up"
   Then I should see "Sign out"
-  And I should see "Take me to RailStocks"
 
 Scenario: Successful Log-In
   Given the user "bob@example.com" with password "password1"
@@ -22,7 +21,6 @@ Scenario: Successful Log-In
   And I fill in "password1" for "Password"
   And I click "Sign in"
   And I should see "Sign out"
-  And I should see "Take me to RailStocks"
 
 Scenario: Unsuccessful Registration - bad username
   When I go to the homepage
@@ -33,7 +31,6 @@ Scenario: Unsuccessful Registration - bad username
   And I fill in "password1" for "Password confirmation"
   And I click "Sign up"
   And I should see "Sign in"
-  And I should see "Take me to RailStocks"
 
 Scenario: Unsuccessful Registration - bad password
   When I go to the homepage
@@ -45,7 +42,6 @@ Scenario: Unsuccessful Registration - bad password
   And I click "Sign up"
   And I should see "Sign up"
   And I should see "Sign in"
-  And I should see "Take me to RailStocks"
 
 Scenario: Unsuccessful Registration - wrong password confirmation
   When I go to the homepage
@@ -58,7 +54,6 @@ Scenario: Unsuccessful Registration - wrong password confirmation
   And I click "Sign up"
   And I should see "Sign up"
   And I should see "Sign in"
-  And I should see "Take me to RailStocks"
 
 Scenario: Unsuccessful Log In - wrong username
   Given the user "bob@example.com" with password "password1"
@@ -70,7 +65,6 @@ Scenario: Unsuccessful Log In - wrong username
   And I click "Sign in"
   And I should see "Sign up"
   And I should see "Sign in"
-  And I should see "Take me to RailStocks"
 
 Scenario: Unsuccessful Log In - wrong password
   Given the user "bob@example.com" with password "password1"
@@ -80,4 +74,3 @@ Scenario: Unsuccessful Log In - wrong password
   And I fill in "bob@example.com" for "Email"
   And I fill in "password" for "Password"
   And I click "Sign in"
-  And I should see "Take me to RailStocks"

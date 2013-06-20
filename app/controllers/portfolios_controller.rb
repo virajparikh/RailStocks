@@ -1,7 +1,3 @@
-# How to get nested associations in JSON
-# u.as_json(:include=>{ :portfolios => { :include => :tickers } } )
-# u.as_json()
-
 class PortfoliosController < ApplicationController
   before_filter :authenticate_user!
 

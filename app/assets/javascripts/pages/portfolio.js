@@ -98,20 +98,6 @@ $(document).ready(function() {
 	   		}
 	   	});
 	};
-	
-// 	//to fix Backlift stringify array issues
-// 	var fixPortfolio = function(portfolio){
-// 	    var stocks_w_brackets = portfolio["stocks[]"];
-// 	    if( stocks_w_brackets ){
-// 	        if ( typeof stocks_w_brackets === "string" ){
-// 	            portfolio.stocks = JSON.parse(stocks_w_brackets);
-// 	        } else{
-// 	            portfolio.stocks = stocks_w_brackets;
-// 	        }
-// 	        delete portfolio["stocks[]"];
-// 	    }
-// 	    return portfolio;
-// 	};
 
 //+++++++++++ View Portfolio ++++++++++++++++++++++++++++++++++++++++++++
 	var getAndShowPortfolio = function(id){
@@ -203,7 +189,7 @@ $(document).ready(function() {
     //$("#createPortfolioForm").validate();   //not working properly	
 
 
-//+++++++++++ Button Clicks +++++++++++++++++++++++++++++++++++++++++++++++++++   
+//+++++++++++ Button Clicks ++++++++++++++++++++++++++++++++++++++++++   
 	
 	//Create Portfolio button
 	$("#createPortfolioBtn").click(function(){
