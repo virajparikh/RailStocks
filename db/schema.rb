@@ -11,20 +11,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130618013819) do
+ActiveRecord::Schema.define(:version => 20130612042524) do
 
   create_table "portfolios", :force => true do |t|
+    t.string   "name"
+    t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.string   "name"
-    t.string   "user_id"
   end
 
   create_table "tickers", :force => true do |t|
+    t.string   "name"
+    t.integer  "portfolio_id"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
-    t.string   "portfolio_id"
-    t.string   "name"
   end
 
   create_table "users", :force => true do |t|

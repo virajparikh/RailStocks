@@ -3,7 +3,7 @@ $(document).ready(function() {
 	var createPortfolioFromInput = function (name, strTickers) { 
 	    var portfolio = {
 	        name: name,
-	        tickers: []
+	        tickers_attributes: []
 	    };
 	   
 	    //replace all commas and semicolons with spaces (g = global)
@@ -12,7 +12,7 @@ $(document).ready(function() {
 		    for (var i = 0; i < tickers.length; i++) {
 		        if (tickers[i]) {
 		        	var tickerObj = { name: tickers[i] };
-		            portfolio.tickers.push(tickerObj);
+		            portfolio.tickers_attributes.push(tickerObj);
 		        }	
 		    }
 	    return portfolio;
@@ -71,7 +71,7 @@ $(document).ready(function() {
 	//load portfolios created on document.ready
 	var getPortfolios = function(){
 		$.ajax({
-			url: '/portfolios',
+			url: '/portfolios.json',
 			type: "GET",			
 			dataType: "json",
 			success: function(portfolios) {   			 
@@ -89,7 +89,8 @@ $(document).ready(function() {
 		$.ajax({
 			url: '/portfolios',
 			type: "POST",
-			data: JSON.stringify(portfolio),
+			data: JSON.stringify({portfolio: portfolio}),
+			dataType: 'json',
 			contentType:'application/json',
 			success: function(portfolio) {    
 	   			showPortfolio(portfolio);
@@ -115,11 +116,10 @@ $(document).ready(function() {
 //+++++++++++ View Portfolio ++++++++++++++++++++++++++++++++++++++++++++
 	var getAndShowPortfolio = function(id){
 		$.ajax({
-			url: '/portfolios/' + id,  //understand this id
+			url: '/portfolios/' + id +'.json',  //understand this id
 			type: "GET",
 			dataType: "json",
 			success: function(portfolio) {
-				fixPortfolio(portfolio);
 	   			showPortfolio(portfolio);
 	   		}
 	   	});

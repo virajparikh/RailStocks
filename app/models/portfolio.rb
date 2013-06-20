@@ -1,5 +1,6 @@
 class Portfolio < ActiveRecord::Base
-  attr_accessible :name
+  attr_accessible :name, :tickers_attributes
+  accepts_nested_attributes_for :tickers
   belongs_to :user
   has_many :tickers
   
