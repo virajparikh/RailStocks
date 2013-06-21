@@ -5,8 +5,7 @@ $(document).ready(function() {
 	        name: name,
 	        tickers_attributes: []
 	    };
-	   
-	    //replace all commas and semicolons with spaces (g = global)
+	    //replace any commas or semicolons the user might insert with spaces (g = global)
 	    var space = ' ';
 	    var tickers = strTickers.replace(/,/g, space).replace(/;/g, space).split(' ');  
 		    for (var i = 0; i < tickers.length; i++) {
@@ -102,7 +101,7 @@ $(document).ready(function() {
 //+++++++++++ View Portfolio ++++++++++++++++++++++++++++++++++++++++++++
 	var getAndShowPortfolio = function(id){
 		$.ajax({
-			url: '/portfolios/' + id +'.json',  //understand this id
+			url: '/portfolios/' + id +'.json',
 			type: "GET",
 			dataType: "json",
 			success: function(portfolio) {
@@ -147,7 +146,7 @@ $(document).ready(function() {
 			type: "DELETE",
 			dataType: "json",
 			success: function() {   
-				alert('deleted portfolio: ' + $("#" + id + " td h5").html());  
+				alert("The '"+ $("#" + id + " td h5").html() + "' portfolio was deleted.");  
 				$('#' + id).remove();  
 			} // End success
 		}); // End .ajax()
@@ -184,10 +183,6 @@ $(document).ready(function() {
       $(".clearInputs").val("")
     };
 
-    //form validation
-    //$("#createPortfolioForm").validate();   //not working properly	
-
-
 //+++++++++++ Button Clicks ++++++++++++++++++++++++++++++++++++++++++   
 	
 	//Create Portfolio button
@@ -209,11 +204,11 @@ $(document).ready(function() {
 		var p_id = $(this).closest("tr").attr('id')
 		getPortfolioForEdit(p_id);
 	})
-	  //in Edit Portfolio modal, Update Portfolio button
+	//Edit Portfolio modal, Update Portfolio button
 	$("#submitUpdatePortfolioBtn").click(function(){
 		getPortfolioForEdit(portfolio);
 
-		var portfolio = createPortfolioFromInput($("#updatePortfolioName").html(), $("#updateTickerInput").val());  //
+		var portfolio = createPortfolioFromInput($("#updatePortfolioName").html(), $("#updateTickerInput").val());
 
 		updatePortfolio(portfolio);
 		clearForm();

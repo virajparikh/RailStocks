@@ -1,3 +1,5 @@
+require 'YahooFinance'
+
 class PortfoliosController < ApplicationController
   before_filter :authenticate_user!
 
@@ -17,6 +19,11 @@ class PortfoliosController < ApplicationController
     portfolio.user = User.find_by_id(get_user_id)
     portfolio.save
     render :nothing => true, :status => 200
+    if portfolio.save
+      flash[:notice] = "Success! Your '#{portfolio.name}' portfolio has been created."
+    else  
+      flash[:notice] = "Sorry! Your '#{portfolio.name}' portfolio did not save. That portfolio name already exists."
+    end
   end
 
   def show

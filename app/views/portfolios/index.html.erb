@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <!-- {{$ styles }} -->
 
     <meta charset="utf-8">
     <title>NSS Rails Project: Viraj Parikh's RailStocks App</title>
@@ -29,12 +28,10 @@
         </div>
       </div>
     </div>
-    <!-- <div class="container"> -->
-
-        <!-- <div class="text-center"> -->
 
           <h3 id="portfolioNameInHeader"> </h3>
-           
+          <!-- Header added by portfolio.js function addStocksToTable -->
+
           <table id="portfolioAnalysisTable" class="table table-striped tablesorter">
             <thead>
               <tr>
@@ -47,13 +44,12 @@
                 <th>LT Momentum</th>
               </tr>
             </thead> 
+
             <tbody id="stockTable">              
-              <!-- Table rows & data added by js function addStocksToTable -->
+            <!-- Table rows & data added by portfolio.js function addStocksToTable -->
             </tbody>
 
           </table>
-
-        <!-- </div> -->
 
         <!-- CREATE PORTFOLIO MODAL
         ================================ -->
@@ -90,7 +86,6 @@
           </div>
         </div>
 
-
         <!-- EDIT PORTFOLIO MODAL
         ================================ -->
 
@@ -124,28 +119,6 @@
           </div>
         </div>
 
-        <!-- DELETE PORTFOLIO MODAL
-        ================================ -->
-<!-- 
-        <div id="deletePortfolioModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-          <div class="modal-header">
-            <button type="button" class="cancelBtn close" data-dismiss="modal" aria-hidden="true">×</button>
-            <h3 id="myModalLabel">WARNING!</h3>
-          </div>
-
-          <div class="modal-body">
-            <form id="deletePortfolioForm" class="form-horizontal">
-              <h4 id="myModalLabel">Are you sure you want to delete this portfolio?</h4>
-            </form>
-          </div>
-
-          <div class="modal-footer">
-            <button class="cancelBtn btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-            <button id="deletePortfolioBtn" class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Delete Portfolio</button>
-          </div>
-        </div> -->
-
-
         <!-- DELETE INDIVIDUAL TICKER CONFIRMATION MODAL
         ================================ -->
         <div id="deleteStockModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -165,7 +138,14 @@
         <!-- Portfolio List
         ========================== -->
         </br>
+        
+        <form name="input" action="html_form_action.asp" method="get">
+          <input placeholder="Input Ticker" type="text" name="user">
+          <input type="submit" value="Submit">
+        </form>
+
         <a id="createPortfolioModalBtn" href="#createPortfolioModal" role="button" class="btn btn-success" data-toggle="modal">Create Portfolio</a>
+
         <h3>Portfolio List</h3>
         <div class="text-center">
            
