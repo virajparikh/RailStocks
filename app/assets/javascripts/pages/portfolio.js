@@ -32,7 +32,7 @@ $(document).ready(function() {
 	//     return yqlURL;
 	// };
 
-	var processticker = function(ticker) {
+	var processTicker = function(ticker) {
 		var tdo = new TickerDomainObject(ticker);
 		ticker.id = ticker.symbol;
 		ticker.ForwardPE = tdo.calcForwardPE();
@@ -87,7 +87,7 @@ $(document).ready(function() {
 //+++++++++++ Create Portfolio ++++++++++++++++++++++++++++++++++++++++++++
 	var createPortfolio = function(portfolio){
 		$.ajax({
-			url: '/portfolios',
+			url: '/portfolios.json',
 			type: "POST",
 			data: JSON.stringify({portfolio: portfolio}),
 			dataType: 'json',
@@ -114,11 +114,10 @@ $(document).ready(function() {
 //+++++++++++ Edit Portfolio ++++++++++++++++++++++++++++++++++++++++++++
 	var getPortfolioForEdit = function(id){
 		$.ajax({
-			url: '/portfolios/' + id,   
+			url: '/portfolios/' + id +'.json',   
 			type: "GET",
 			dataType: "json",
 			success: function(portfolio) {
-				fixPortfolio(portfolio);
 				$("#updatePortfolioName").attr("data-portfolioId", id);
 	   			$("#updatePortfolioName").html(portfolio.name);
 	   			$("#updateTickerInput").val(portfolio.stocks.join(' '));
@@ -126,16 +125,16 @@ $(document).ready(function() {
 	   	});
 	};
 
+//+++++++++++ for use with Edit Portfolio button ++++++++++++++++++++++++++++++++++++++++++++
 	var	updatePortfolio = function(portfolio){	
 		var id = $("#updatePortfolioName").attr("data-portfolioId");
 		portfolio.id = id;	
 		$.ajax({
-			url: '/portfolios/' + portfolio.id,
+			url: '/portfolios/' + portfolio.id +'.json',
 			type: "PUT",
 			data: JSON.stringify(portfolio),
 			contentType:'application/json',
 			success: function() {
-				fixPortfolio(portfolio);
 	   			showPortfolio(portfolio);
 	   		}
 	   	});
@@ -144,7 +143,7 @@ $(document).ready(function() {
 //+++++++++++ Delete Portfolio ++++++++++++++++++++++++++++++++++++++++++++
 	var deletePortfolio = function(id) {
 		$.ajax({
-			url: '/portfolios/' + id,
+			url: '/portfolios/' + id +'.json',
 			type: "DELETE",
 			dataType: "json",
 			success: function() {   
@@ -196,6 +195,7 @@ $(document).ready(function() {
 		var portfolio = createPortfolioFromInput($("#createPortfolioName").val(), $("#addTickerInput").val());
 		createPortfolio(portfolio);
 		clearForm();
+		addPortfolioToTable(portfolio);
 	});
 
 	//View Portfolio button

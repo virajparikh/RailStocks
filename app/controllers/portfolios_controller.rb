@@ -1,10 +1,6 @@
 class PortfoliosController < ApplicationController
   before_filter :authenticate_user!
 
-  # def initialize params
-  #   @params = params
-  # end
-
   def index
     portfolios = Portfolio.find_all_by_user_id(get_user_id)
     respond_to do |format|
@@ -14,37 +10,31 @@ class PortfoliosController < ApplicationController
                   }
       format.html{ render :index }
     end
-
- 
   end
 
   def create
-       
     portfolio = Portfolio.new(params[:portfolio])
     portfolio.user = User.find_by_id(get_user_id)
-    
-    if portfolio.save
-      puts "Success!  Your '#{portfolio.name}' portfolio has been created."
-    else  
-      puts "Sorry!  Your '#{portfolio.name}' portfolio did not save.  That portfolio name already exists."
-    end
-  end
-
-  def destroy
-    matching_portfolios = Portfolio.where(name: params[:portfolio][:name]).all
-    matching_portfolios.each do |portfolio|
-      portfolio.destroy
-    puts "Destroyed!  Your '#{portfolio.name}' portfolio has been deleted."
-    end
+    portfolio.save
+    render :nothing => true, :status => 200
   end
 
   def show
     respond_to do |format|
        format.json{ render json: Portfolio.includes(:tickers)
                                           .find_by_id_and_by_user_id(params[:id], get_user_id)
-                                          .as_json(:include => :tickers)
-                   }
+                                          .as_json(:include => :tickers)                   }
     end
+  end
+
+  def edit
+  
+  end
+
+  def destroy
+    portfolio = Portfolio.find(params[:id])
+    portfolio.destroy
+    index
   end
 
   private
