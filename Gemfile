@@ -6,7 +6,7 @@ gem 'jquery-rails'
 gem 'twitter-bootstrap-rails'
 gem 'pg'
 gem 'devise' # https://github.com/plataformatec/devise
-# gem 'yahoofinance' # https://github.com/herval/yahoo-finance
+gem 'yahoofinance' # https://github.com/herval/yahoo-finance
 
 
 # Gems used only for assets and not required
