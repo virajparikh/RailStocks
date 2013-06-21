@@ -1,4 +1,3 @@
-require 'YahooFinance'
 
 class PortfoliosController < ApplicationController
   before_filter :authenticate_user!
