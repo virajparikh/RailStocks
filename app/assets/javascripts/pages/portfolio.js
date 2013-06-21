@@ -40,29 +40,36 @@ $(document).ready(function() {
 		ticker.ltMomentum = tdo.calcLTMomentum();
 	};
 
-	var showPortfolio = function(portfolio) { 
+	var showPortfolio = function(id) { 
 		// replace the old stock table with the new stock table		
-		$("#stockTable").empty();
 		$("#portfolioNameInHeader").empty();
-		$('#portfolioNameInHeader').html("Portfolio Analysis: <em>" + portfolio.name + "</em>");	
+		$("#stockTable").empty();
+		$('#portfolioNameInHeader').html("Portfolio Analysis: <em>" + portfolio.name + "</em>");
 		
-		var yqlurl = createYQLURL(portfolio);
-
+		// var yqlurl = createYQLURL(portfolio);
+		
 		$.ajax({
-			url: yqlurl,
-			type: "GET",	
+			url: '/portfolios/' + id +'.json',
+			type: "GET",
 			dataType: "json",
-			success: function(stocksjson) {
-				if ( stocksjson.query.results && stocksjson.query.results.quote ) {
-						for (var i = 0; i < stocksjson.query.count; i++) {  
-							var stock = stocksjson.query.results.quote[i]; //digs into the layers of the json file and returns only the relevant stock data
-							processStock(stock);
-							addStocksToTable(stock);	
-							$("#portfolioAnalysisTable").tablesorter();	//not working properly	
-						}
-				} else {
-					alert("Failed to retrieve data from Yahoo Finance. Please try again later.");
+			success: function() {
+				
+				processStock(stock);
+				addStocksToTable(stock);
 				}
+			} 
+			
+			// success: function(stocksjson) {
+			// 	if ( stocksjson.query.results && stocksjson.query.results.quote ) {
+			// 			for (var i = 0; i < stocksjson.query.count; i++) {  
+			// 				var stock = stocksjson.query.results.quote[i]; //digs into the layers of the json file and returns only the relevant stock data
+			// 				processStock(stock);
+			// 				addStocksToTable(stock);	
+			// 				$("#portfolioAnalysisTable").tablesorter();	//not working properly	
+			// 			}
+			// 	} else {
+			// 		alert("Failed to retrieve data from Yahoo Finance. Please try again later.");
+			// 	}
 			} // End success
 		}); // End .ajax()
 	};
