@@ -56,9 +56,8 @@ $(document).ready(function() {
 				
 				processStock(stock);
 				addStocksToTable(stock);
-				}
-			} 
-			
+			    $("#portfolioAnalysisTable").tablesorter();
+
 			// success: function(stocksjson) {
 			// 	if ( stocksjson.query.results && stocksjson.query.results.quote ) {
 			// 			for (var i = 0; i < stocksjson.query.count; i++) {  
@@ -74,7 +73,6 @@ $(document).ready(function() {
 		}); // End .ajax()
 	};
 
-	//load portfolios created on document.ready
 	var getPortfolios = function(){
 		$.ajax({
 			url: '/portfolios.json',
@@ -87,7 +85,8 @@ $(document).ready(function() {
 	   		}
 	   	});
 	}
-	
+
+//load portfolios created on document.ready
 	getPortfolios();
 
 //+++++++++++ Create Portfolio ++++++++++++++++++++++++++++++++++++++++++++
@@ -162,26 +161,26 @@ $(document).ready(function() {
 //+++++++++++ Create Portfolio Analysis Table ++++++++++++++++++++++++++++++++++++++++
 	var addStocksToTable = function (ticker) {
       $('#stockTable').append(      	
-		      	"<tr class='stockRow' id='" + ticker.id + "'>" +
-		        "<td class='ticker'>" + ticker.id + "</td>" +
-		        "<td class='name'>" + ticker.Name + "</td>" +
-		        "<td align='right' class='right mktcap'>" + ticker.MarketCapitalization + "</td>" +
-		        "<td align='center' class='fwdPE'>" + ticker.ForwardPE.toFixed(2) + "x</td>" +
-		        "<td align='center' class='priceToBook'>" + ticker.PriceToBook.toFixed(2) + "x</td>" +
-		        "<td class='stMomentum'>" + ticker.stMomentum + "</td>" +
-		        "<td class='ltMomentum'>" + ticker.ltMomentum + "</td>" +
-		        //"<td class='deleteStockIcon'>" + "<i class='icon-remove'></i>" + "</td>"
-		        "</tr>"  
+	      	"<tr class='stockRow' id='" + ticker.id + "'>" +
+	        "<td class='ticker'>" + ticker.id + "</td>" +
+	        "<td class='name'>" + ticker.Name + "</td>" +
+	        "<td align='right' class='right mktcap'>" + ticker.MarketCapitalization + "</td>" +
+	        "<td align='center' class='fwdPE'>" + ticker.ForwardPE.toFixed(2) + "x</td>" +
+	        "<td align='center' class='priceToBook'>" + ticker.PriceToBook.toFixed(2) + "x</td>" +
+	        "<td class='stMomentum'>" + ticker.stMomentum + "</td>" +
+	        "<td class='ltMomentum'>" + ticker.ltMomentum + "</td>" +
+	        //"<td class='deleteStockIcon'>" + "<i class='icon-remove'></i>" + "</td>"
+	        "</tr>"  
 		    );
         };  
 
 //+++++++++++ Create Portfolio List ++++++++++++++++++++++++++++++++++++++++   
     var addPortfolioToTable = function(portfolio) {
       $('#portfolioList').append(      	
-	      	'<tr class="portfolioRow" id="' + portfolio.id + '">' + '<td class="portfolioName">' + '<h5>' + portfolio.name + '</h5>' + '</td>' + '<td>' + '<div class="pull-right">' +
-              '<button role="button" class="viewPortfolioBtn btn btn-info" >View Portfolio</button>' + '  ' +
-              '<a href="#editPortfolioModal" role="button" data-toggle="modal" class="editPortfolioBtn btn btn-warning">Edit Portfolio</a>' + '  ' +
-              '<button role="button" class="deletePortfolioBtn btn btn-danger" >Delete Portfolio</button></div>' + "</tr>"
+      	'<tr class="portfolioRow" id="' + portfolio.id + '">' + '<td class="portfolioName">' + '<h5>' + portfolio.name + '</h5>' + '</td>' + '<td>' + '<div class="pull-right">' + 
+      	'<button role="button" class="viewPortfolioBtn btn btn-info" >View Portfolio</button>' + '  ' + 
+      	'<a href="#editPortfolioModal" role="button" data-toggle="modal" class="editPortfolioBtn btn btn-warning">Edit Portfolio</a>' + '  ' +
+        '<button role="button" class="deletePortfolioBtn btn btn-danger" >Delete Portfolio</button></div>' + "</tr>"
         );
   	};
 

@@ -11,8 +11,16 @@ HTML BODY {
   background-image: url(../assets/Grunge-1.png);
   background-repeat: repeat;
   background-position: top left;
-  padding-top: 60px;
+  padding-top: 70px;
+  margin-left: 150px;
+  margin-right: 150px;
 }
+
+.black-bar {
+  text-align: right;
+  margin-right: 125px;
+}
+
 
 #heatmap {
   text-align: center;

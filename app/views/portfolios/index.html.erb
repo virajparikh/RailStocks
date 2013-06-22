@@ -11,155 +11,152 @@
   
   <body>
 
-    <!-- top navigation bar -->
+<!-- ================== Top Navigation Bar ========================== -->
 
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
-        <div class="container">
-          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
           <div class="nav-collapse collapse"></br>
              <ul class="black-bar pull-right">Welcome, <%= link_to current_user.email, dashboard_index_path %>.   Not you?  <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>  
             </ul>
           </div><!--/.nav-collapse -->
         </div>
       </div>
-    </div>
+    </div>  <!-- this div is needed to properly align portfolio buttons -->
+    
+<!-- ================== Stock Ticker Table ========================== -->
 
-          <h3 id="portfolioNameInHeader"> </h3>
-          <!-- Header added by portfolio.js function addStocksToTable -->
+    </br>
+    </br>
+      <h3 id="portfolioNameInHeader"> </h3>
+      <!-- Header added by portfolio.js function addStocksToTable -->
+      <table id="portfolioAnalysisTable" class="table table-striped tablesorter">
+        <thead>
+          <tr>
+            <th>Ticker</th>
+            <th>Company Name</th>
+            <th>Market Cap</th>
+            <th>Fwd Price/Earnings</th>
+            <th>Price/ BookValue</th>
+            <th>ST Momentum</th>
+            <th>LT Momentum</th>
+          </tr>
+        </thead> 
 
-          <table id="portfolioAnalysisTable" class="table table-striped tablesorter">
-            <thead>
-              <tr>
-                <th>Ticker</th>
-                <th>Company Name</th>
-                <th>Market Cap</th>
-                <th>Fwd Price/Earnings</th>
-                <th>Price/ BookValue</th>
-                <th>ST Momentum</th>
-                <th>LT Momentum</th>
-              </tr>
-            </thead> 
+        <tbody id="stockTable">              
+        <!-- Table rows & data added by portfolio.js function addStocksToTable -->
+        </tbody>
+      </table>
 
-            <tbody id="stockTable">              
-            <!-- Table rows & data added by portfolio.js function addStocksToTable -->
-            </tbody>
+<!-- ================== Portfolio List ========================== -->
+    </br>
 
-          </table>
+      <form name="input" action="html_form_action.asp" method="get">
+        <input placeholder="Input Ticker" type="text" name="user">
+        <input type="submit" value="Submit">
+      </form>
 
-        <!-- CREATE PORTFOLIO MODAL
-        ================================ -->
+      <a id="createPortfolioModalBtn" href="#createPortfolioModal" role="button" class="btn btn-success" data-toggle="modal">Create Portfolio</a>
 
-        <div id="createPortfolioModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-          
-          <div class="modal-header">
-            <button type="button" class="cancelBtn close" data-dismiss="modal" aria-hidden="true">×</button>
-            <h3 id="myModalLabel">Create Your Portfolio<small> Input your stock tickers here</small></h3>
-          </div>
-          
-          <div class="modal-body">
-            <form id="createPortfolioForm" class="form-horizontal">
-              <div class="control-group">
-                <label class="control-label" for="Name">Portfolio:</label>
-                <div class="controls">
-                  <input type="text" id="createPortfolioName" class="stockInputs clearInputs" name="Portfolio Name" placeholder="Portfolio Name (Required)" class="required" minlength="1" required/>
-                </div>
-              </div>
+      <h3>Portfolio List</h3>
+      <div class="text-center">
+         
+        <table class="table table-striped">
+          <!-- <thead>
+            <tr>
+              <th></th>
+            </tr>
+          </thead>  -->
+          <tbody id="portfolioList">              
+            <!-- Portfolio list added by js function addPortfolioToTable -->
+          </tbody>
+        </table>
+      </div><!-- /.text-center -->
 
-              <div class="control-group">
-                <label class="control-label" for="tickers">Stocks:</label>
-                <div class="controls">
-                  <textarea rows="3" type="text" id="addTickerInput" class="stockInputs clearInputs" name="Tickers" placeholder="Tickers (separated by spaces)" class="required" minlength="1" required/></textarea>
-                  
-                </div>
-              </div>
-            </form>
-          </div>
+      <!-- CREATE PORTFOLIO MODAL
+      ================================ -->
 
-          <div class="modal-footer">
-            <button class="cancelBtn btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-            <button id="createPortfolioBtn" class="btn btn-success" data-dismiss="modal" aria-hidden="true">Add Portfolio</button>
-          </div>
-        </div>
-
-        <!-- EDIT PORTFOLIO MODAL
-        ================================ -->
-
-        <div id="editPortfolioModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-          <div class="modal-header">
-            <button type="button" class="cancelBtn close" data-dismiss="modal" aria-hidden="true">×</button>
-            <h3 id="myModalLabel">Edit Portfolio<small>  Add or Delete your stock tickers here</small></h3>
+      <div id="createPortfolioModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        
+        <div class="modal-header">
+          <button type="button" class="cancelBtn close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h3 id="myModalLabel">Create Your Portfolio<small> Input your stock tickers here</small></h3>
         </div>
         
         <div class="modal-body">
-          <form id="editPortfolioForm" class="form-horizontal">
+          <form id="createPortfolioForm" class="form-horizontal">
             <div class="control-group">
               <label class="control-label" for="Name">Portfolio:</label>
-                <div class="controls">
-                  <h4 id="updatePortfolioName" class="stockInputs clearInputs" name="Portfolio Name" ></h4>
-                </div>
+              <div class="controls">
+                <input type="text" id="createPortfolioName" class="stockInputs clearInputs" name="Portfolio Name" placeholder="Portfolio Name (Required)" class="required" minlength="1" required/>
+              </div>
             </div>
 
-              <div class="control-group">
-                <label class="control-label" for="tickers">Stocks:</label>
-                <div class="controls">
-                  <textarea rows="3"  type="text" id="updateTickerInput" class="stockInputs clearInputs" name="Tickers" placeholder="Tickers (separated by spaces)" required></textarea>
-                </div>
+            <div class="control-group">
+              <label class="control-label" for="tickers">Stocks:</label>
+              <div class="controls">
+                <textarea rows="3" type="text" id="addTickerInput" class="stockInputs clearInputs" name="Tickers" placeholder="Tickers (separated by spaces)" class="required" minlength="1" required/></textarea>
+                
               </div>
+            </div>
           </form>
         </div>
 
-          <div class="modal-footer">
-            <button class="cancelBtn btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-            <button id="submitUpdatePortfolioBtn" class="btn btn-warning" data-dismiss="modal" aria-hidden="true">Update Portfolio</button>
-          </div>
+        <div class="modal-footer">
+          <button class="cancelBtn btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+          <button id="createPortfolioBtn" class="btn btn-success" data-dismiss="modal" aria-hidden="true">Add Portfolio</button>
         </div>
+      </div>
 
-        <!-- DELETE INDIVIDUAL TICKER CONFIRMATION MODAL
-        ================================ -->
-        <div id="deleteStockModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-          <div class="modal-header">
-            <button type="button" class="cancelBtn close" data-dismiss="modal" aria-hidden="true">×</button>
-            <h3 id="myModalLabel">Delete this stock?</h3>
-          </div>
-          <div class="modal-body">
-            <p>Are you sure?</p>
-          </div>
-          <div class="modal-footer">
-            <button class="cancelBtn btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-            <button id="deleteStockBtn" class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Delete Stock</button>
-          </div>
-        </div>
+      <!-- EDIT PORTFOLIO MODAL
+      ================================ -->
 
-        <!-- Portfolio List
-        ========================== -->
-        </br>
-        
-        <form name="input" action="html_form_action.asp" method="get">
-          <input placeholder="Input Ticker" type="text" name="user">
-          <input type="submit" value="Submit">
+      <div id="editPortfolioModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-header">
+          <button type="button" class="cancelBtn close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h3 id="myModalLabel">Edit Portfolio<small>  Add or Delete your stock tickers here</small></h3>
+      </div>
+      
+      <div class="modal-body">
+        <form id="editPortfolioForm" class="form-horizontal">
+          <div class="control-group">
+            <label class="control-label" for="Name">Portfolio:</label>
+              <div class="controls">
+                <h4 id="updatePortfolioName" class="stockInputs clearInputs" name="Portfolio Name" ></h4>
+              </div>
+          </div>
+
+            <div class="control-group">
+              <label class="control-label" for="tickers">Stocks:</label>
+              <div class="controls">
+                <textarea rows="3"  type="text" id="updateTickerInput" class="stockInputs clearInputs" name="Tickers" placeholder="Tickers (separated by spaces)" required></textarea>
+              </div>
+            </div>
         </form>
+      </div>
 
-        <a id="createPortfolioModalBtn" href="#createPortfolioModal" role="button" class="btn btn-success" data-toggle="modal">Create Portfolio</a>
+        <div class="modal-footer">
+          <button class="cancelBtn btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+          <button id="submitUpdatePortfolioBtn" class="btn btn-warning" data-dismiss="modal" aria-hidden="true">Update Portfolio</button>
+        </div>
+      </div>
 
-        <h3>Portfolio List</h3>
-        <div class="text-center">
-           
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th></th>
-              </tr>
-            </thead> 
-            <tbody id="portfolioList">              
-              <!-- Portfolio list added by js function addPortfolioToTable -->
-            </tbody>
-          </table>
-        </div><!-- /.text-center -->
+      <!-- DELETE INDIVIDUAL TICKER CONFIRMATION MODAL
+          ============================================= -->
+
+      <div id="deleteStockModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-header">
+          <button type="button" class="cancelBtn close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h3 id="myModalLabel">Delete this stock?</h3>
+        </div>
+        <div class="modal-body">
+          <p>Are you sure?</p>
+        </div>
+        <div class="modal-footer">
+          <button class="cancelBtn btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+          <button id="deleteStockBtn" class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Delete Stock</button>
+        </div>
+      </div>
+
     </div>
            <!-- {{$ scripts }} -->
            <!-- main logic: assets/js/pages/portfolio.js -->
