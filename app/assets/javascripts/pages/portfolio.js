@@ -14,7 +14,7 @@ $(document).ready(function() {
 		            portfolio.tickers_attributes.push(tickerObj);
 		        }	
 		    }
-	    return portfolio;
+	    return portfolio;  // this is passed into the createPortfolio function below
 	};
 
 	// var createYQLURL = function(portfolio){
@@ -69,6 +69,7 @@ $(document).ready(function() {
 			// 	} else {
 			// 		alert("Failed to retrieve data from Yahoo Finance. Please try again later.");
 			// 	}
+
 			} // End success
 		}); // End .ajax()
 	};
@@ -135,7 +136,7 @@ $(document).ready(function() {
 		var id = $("#updatePortfolioName").attr("data-portfolioId");
 		portfolio.id = id;	
 		$.ajax({
-			url: '/portfolios/' + portfolio.id +'.json',
+			url: '/portfolios/' + id +'.json',
 			type: "PUT",
 			data: JSON.stringify(portfolio),
 			contentType:'application/json',
@@ -152,7 +153,7 @@ $(document).ready(function() {
 			type: "DELETE",
 			dataType: "json",
 			success: function() {   
-				alert("The '"+ $("#" + id + " td h5").html() + "' portfolio was deleted.");  
+				alert("The '"+ $("#" + id + " td h4").html() + "' portfolio was deleted.");  
 				$('#' + id).remove();  
 			} // End success
 		}); // End .ajax()
@@ -177,20 +178,20 @@ $(document).ready(function() {
 //+++++++++++ Create Portfolio List ++++++++++++++++++++++++++++++++++++++++   
     var addPortfolioToTable = function(portfolio) {
       $('#portfolioList').append(      	
-      	'<tr class="portfolioRow" id="' + portfolio.id + '">' + '<td class="portfolioName">' + '<h5>' + portfolio.name + '</h5>' + '</td>' + '<td>' + '<div class="pull-right">' + 
+      	'<tr class="portfolioRow" id="' + portfolio.id + '">' + '<td class="portfolioName">' + '<em><h4>' + portfolio.name + '</h4></em>' + '</td>' + '<td>' + '<div class="pull-right">' + 
       	'<button role="button" class="viewPortfolioBtn btn btn-info" >View Portfolio</button>' + '  ' + 
       	'<a href="#editPortfolioModal" role="button" data-toggle="modal" class="editPortfolioBtn btn btn-warning">Edit Portfolio</a>' + '  ' +
         '<button role="button" class="deletePortfolioBtn btn btn-danger" >Delete Portfolio</button></div>' + "</tr>"
         );
   	};
 
+//+++++++++++++++ Button Clicks ++++++++++++++++++++++++++++++++++++++++++   
+
   	//clear fields in form
   	var clearForm = function() {
       $(".clearInputs").val("")
     };
 
-//+++++++++++ Button Clicks ++++++++++++++++++++++++++++++++++++++++++   
-	
 	//Create Portfolio button
 	$("#createPortfolioBtn").click(function(){
 		var portfolio = createPortfolioFromInput($("#createPortfolioName").val(), $("#addTickerInput").val());
