@@ -53,7 +53,6 @@ $(document).ready(function() {
 			type: "GET",
 			dataType: "json",
 			success: function() {
-				
 				processStock(stock);
 				addStocksToTable(stock);
 			    $("#portfolioAnalysisTable").tablesorter();
