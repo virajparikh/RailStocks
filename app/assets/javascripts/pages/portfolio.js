@@ -40,7 +40,7 @@ $(document).ready(function() {
 		ticker.ltMomentum = tdo.calcLTMomentum();
 	};
 
-	var showPortfolio = function(id) { 
+	var showPortfolio = function(portfolio) { 
 		// replace the old stock table with the new stock table		
 		$("#portfolioNameInHeader").empty();
 		$("#stockTable").empty();
@@ -49,12 +49,17 @@ $(document).ready(function() {
 		// var yqlurl = createYQLURL(portfolio);
 		
 		$.ajax({
-			url: '/portfolios/' + id +'.json',
+			url: '/portfolios/' + portfolio.id +'/details.json',
 			type: "GET",
 			dataType: "json",
-			success: function() {
-				processStock(stock);
-				addStocksToTable(stock);
+			success: function(hashOfTickers) {
+
+				for(symbol_which_is_key in hashOfTickers){
+					ticker = hashOfTickers[symbol_which_is_key]
+					processTicker(ticker);
+					addStocksToTable(ticker);
+				}
+
 			    $("#portfolioAnalysisTable").tablesorter();
 
 			// success: function(stocksjson) {
@@ -106,6 +111,7 @@ $(document).ready(function() {
 
 //+++++++++++ View Portfolio ++++++++++++++++++++++++++++++++++++++++++++
 	var getAndShowPortfolio = function(id){
+		
 		$.ajax({
 			url: '/portfolios/' + id +'.json',
 			type: "GET",
@@ -125,7 +131,13 @@ $(document).ready(function() {
 			success: function(portfolio) {
 				$("#updatePortfolioName").attr("data-portfolioId", id);
 	   			$("#updatePortfolioName").html(portfolio.name);
-	   			$("#updateTickerInput").val(portfolio.stocks.join(' '));
+	   			var symbols = "";
+	   			
+	   			for(var i = 0; i < portfolio.tickers.length; i++){
+	   				symbols += portfolio.tickers[i].name + " ";
+	   			};
+	   			
+	   			$("#updateTickerInput").val(symbols);
 	   		}
 	   	});
 	};
@@ -133,6 +145,7 @@ $(document).ready(function() {
 //+++++++++++ for use with Edit Portfolio button ++++++++++++++++++++++++++++++++++++++++++++
 	var	updatePortfolio = function(portfolio){	
 		var id = $("#updatePortfolioName").attr("data-portfolioId");
+		debugger;
 		portfolio.id = id;	
 		$.ajax({
 			url: '/portfolios/' + id +'.json',
@@ -163,10 +176,10 @@ $(document).ready(function() {
       $('#stockTable').append(      	
 	      	"<tr class='stockRow' id='" + ticker.id + "'>" +
 	        "<td class='ticker'>" + ticker.id + "</td>" +
-	        "<td class='name'>" + ticker.Name + "</td>" +
-	        "<td align='right' class='right mktcap'>" + ticker.MarketCapitalization + "</td>" +
-	        "<td align='center' class='fwdPE'>" + ticker.ForwardPE.toFixed(2) + "x</td>" +
-	        "<td align='center' class='priceToBook'>" + ticker.PriceToBook.toFixed(2) + "x</td>" +
+	        "<td class='name'>" + ticker.name + "</td>" +
+	        "<td align='right' class='right mktcap'>" + ticker.marketCap + "</td>" +
+	        "<td align='center' class='fwdPE'>" + ticker.pricePerEPSEstimateNextYear + "x</td>" +
+	        "<td align='center' class='priceToBook'>" + ticker.pricePerBook + "x</td>" +
 	        "<td class='stMomentum'>" + ticker.stMomentum + "</td>" +
 	        "<td class='ltMomentum'>" + ticker.ltMomentum + "</td>" +
 	        //"<td class='deleteStockIcon'>" + "<i class='icon-remove'></i>" + "</td>"

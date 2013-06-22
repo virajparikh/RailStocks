@@ -3,6 +3,8 @@ Railstocks::Application.routes.draw do
   
   root to: "home#index"
 
+  match 'portfolios/:id/details' => 'portfolios#details'
+
   resources :dashboard
   resources :portfolios
 

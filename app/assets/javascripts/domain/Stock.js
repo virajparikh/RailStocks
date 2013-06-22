@@ -1,20 +1,30 @@
+// lastTrade: 413.5
+// marketCap: "388.1B"
+// movingAve50days: "431.59"
+// movingAve200days: "505.657"
+// name: "Apple Inc."
+// pricePerBook: 2.89
+// pricePerEPSEstimateNextYear: "9.53"
+// symbol: "AAPL"
+// volume: 17187478
+
     var TickerDomainObject = function(ticker){
     	this.ticker = ticker;
     };
 
     TickerDomainObject.prototype.calcSTMomentum = function() {
 			var ticker = this.ticker,
-				price_GT_50Day_GT_200Day = ticker.LastTradePriceOnly > ticker.											FiftydayMovingAverage
-											&& ticker.FiftydayMovingAverage > ticker.TwoHundreddayMovingAverage,
+				price_GT_50Day_GT_200Day = ticker.lastTrade > ticker.											movingAve50days
+											&& ticker.movingAve50days > ticker.movingAve200days,
 	// :last_trade_price > :moving_average_50_day && :moving_average_50_day >:moving_average_200_day 
-				price_LT_50Day_GT_200Day = ticker.LastTradePriceOnly < ticker.											FiftydayMovingAverage 
-				  						    && ticker.FiftydayMovingAverage > ticker.TwoHundreddayMovingAverage,
+				price_LT_50Day_GT_200Day = ticker.lastTrade < ticker.											movingAve50days 
+				  						    && ticker.movingAve50days > ticker.movingAve200days,
 	// :last_trade_price < :moving_average_50_day && :moving_average_50_day >:moving_average_200_day 
-				price_GT_50day_LT_200Day = ticker.LastTradePriceOnly > ticker.											FiftydayMovingAverage 
-					   						&& ticker.FiftydayMovingAverage < ticker.TwoHundreddayMovingAverage,
+				price_GT_50day_LT_200Day = ticker.lastTrade > ticker.											movingAve50days 
+					   						&& ticker.movingAve50days < ticker.movingAve200days,
 	// :last_trade_price > :moving_average_50_day && :moving_average_50_day <:moving_average_200_day 
-				price_LT_50day_LT_200Day = ticker.LastTradePriceOnly < ticker.											FiftydayMovingAverage 
-					   						&& ticker.FiftydayMovingAverage < ticker.TwoHundreddayMovingAverage;
+				price_LT_50day_LT_200Day = ticker.lastTrade < ticker.											movingAve50days 
+					   						&& ticker.movingAve50days < ticker.movingAve200days;
 	// :last_trade_price < :moving_average_50_day && :moving_average_50_day <:moving_average_200_day 
 
 			if ( price_GT_50Day_GT_200Day ) {
@@ -36,7 +46,7 @@
 	};
     
     TickerDomainObject.prototype.calcLTMomentum = function(){
-		if (this.ticker.FiftydayMovingAverage > this.ticker.TwoHundreddayMovingAverage) { //_50Day_GT_200Day = ticker.FiftydayMovingAverage > ticker.TwoHundreddayMovingAverage,
+		if (this.ticker.movingAve50days > this.ticker.movingAve200days) { //_50Day_GT_200Day = ticker.movingAve50days > ticker.movingAve200days,
 			return "Positive LT Momentum";
 	// :moving_average_50_day >:moving_average_200_day 
 		} else {
@@ -47,12 +57,12 @@
 	};  
 
     TickerDomainObject.prototype.calcForwardPE = function(){
-		return parseFloat(this.ticker.LastTradePriceOnly, 10) / parseFloat(this.ticker.EPSEstimateNextYear, 10);
+		return parseFloat(this.ticker.lastTrade, 10) / parseFloat(this.ticker.EPSEstimateNextYear, 10);
     }
     // :last_trade_price / :eps_estimate_next_year 
 	
 	TickerDomainObject.prototype.calcPriceToBook = function(){
-    	return parseFloat(this.ticker.LastTradePriceOnly, 10) / parseFloat(this.ticker.BookValue, 10);
+    	return parseFloat(this.ticker.lastTrade, 10) / parseFloat(this.ticker.BookValue, 10);
     };
     // :price_per_book
 
