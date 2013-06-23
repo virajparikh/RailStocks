@@ -145,9 +145,13 @@ $(document).ready(function() {
 	        "<td class='companyName'>" + ticker.name + "</td>" +
 	        "<td class='price'>$" + ticker.lastTrade + "</td>" +
 	        "<td class='mktCap'>$" + ticker.marketCap + "</td>" +
+	        "<td class='divYield'>" + ticker.dividendYield + "%</td>" +
+	        "<td class='priceSales'>" + ticker.pricePerSales + "x</td>" +
+	        "<td class='trailingPE'>" + ticker.peRatio + "x</td>" +
 	        "<td class='currentPE'>" + ticker.pricePerEPSEstimateCurrentYear + "x</td>" +
 	        "<td class='fwdPE'>" + ticker.pricePerEPSEstimateNextYear + "x</td>" +
 	        "<td class='priceBook'>" + ticker.pricePerBook + "x</td>" +
+	        "<td class='pegRatio'>" + ticker.pegRatio + "x</td>" +
 	        "<td class='shortRatio'>" + ticker.shortRatio + "%</td>" +
 	        "<td class='stMomentum'>" + ticker.stMomentum + "</td>" +
 	        "<td class='ltMomentum'>" + ticker.ltMomentum + "</td>" +

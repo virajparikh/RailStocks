@@ -71,9 +71,13 @@ class PortfoliosController < ApplicationController
       ticker4Client["lastTrade"] = standardQuote.lastTrade
       ticker4Client["volume"] = standardQuote.volume
       ticker4Client["marketCap"] = extendedQuote.marketCap
+      ticker4Client["dividendYield"] = extendedQuote.dividendYield
+      ticker4Client["pricePerSales"] = extendedQuote.pricePerSales
+      ticker4Client["peRatio"] = extendedQuote.peRatio
       ticker4Client["pricePerEPSEstimateCurrentYear"] = extendedQuote.pricePerEPSEstimateCurrentYear
       ticker4Client["pricePerEPSEstimateNextYear"] = extendedQuote.pricePerEPSEstimateNextYear
       ticker4Client["pricePerBook"] = extendedQuote.pricePerBook
+      ticker4Client["pegRatio"] = extendedQuote.pegRatio
       ticker4Client["shortRatio"] = extendedQuote.shortRatio
       ticker4Client["movingAve50days"] = extendedQuote.movingAve50days
       ticker4Client["movingAve200days"] = extendedQuote.movingAve200days

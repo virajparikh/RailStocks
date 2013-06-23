@@ -30,7 +30,9 @@ HTML BODY {
 }
 
 .companyName {
-  width: 120px;
+  width: 140px;
+  font-weight: bold;
+  font-size: 10pt;
 }
 
 .price {
@@ -41,28 +43,44 @@ HTML BODY {
   width: 65px;
 }
 
-.currentPE {
+.divYield {
   width: 55px;
+}
+
+.priceSales {
+  width: 50px;
+}
+
+.trailingPE {
+  width: 50px;
+}
+
+.currentPE {
+  width: 50px;
 }
 
 .fwdPE {
-  width: 55px;
+  width: 50px;
 }
 
 .priceBook {
-  width: 55px;
+  width: 40px;
+}
+
+.pegRatio {
+  width: 40px;
 }
 
 .shortRatio {
-  width: 55px;
+  width: 40px;
 }
 
 .stMomentum {
-  width: 90px;
+  width: 70px;
 }
 
 .ltMomentum {
-  width: 90px;
+  width: 70px;
 }
 
 #heatmap {
