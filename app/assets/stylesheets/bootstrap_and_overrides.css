@@ -21,6 +21,49 @@ HTML BODY {
   margin-right: 100px;
 }
 
+.ticker {
+  width: 35px;
+}
+
+.companyName {
+  width: 120px;
+}
+
+.companyName {
+  width: 120px;
+}
+
+.price {
+  width: 35px;
+}
+
+.mktCap {
+  width: 65px;
+}
+
+.currentPE {
+  width: 55px;
+}
+
+.fwdPE {
+  width: 55px;
+}
+
+.priceBook {
+  width: 55px;
+}
+
+.shortRatio {
+  width: 55px;
+}
+
+.stMomentum {
+  width: 90px;
+}
+
+.ltMomentum {
+  width: 90px;
+}
 
 #heatmap {
   text-align: center;

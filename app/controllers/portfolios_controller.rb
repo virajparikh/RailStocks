@@ -66,13 +66,15 @@ class PortfoliosController < ApplicationController
       standardQuote = q_data[symbol]
       extendedQuote = e_data[symbol]
 
-      ticker4Client["symbol"] = symbol
+      ticker4Client["symbol"] = extendedQuote.symbol
       ticker4Client["name"] = standardQuote.name
       ticker4Client["lastTrade"] = standardQuote.lastTrade
       ticker4Client["volume"] = standardQuote.volume
       ticker4Client["marketCap"] = extendedQuote.marketCap
+      ticker4Client["pricePerEPSEstimateCurrentYear"] = extendedQuote.pricePerEPSEstimateCurrentYear
       ticker4Client["pricePerEPSEstimateNextYear"] = extendedQuote.pricePerEPSEstimateNextYear
       ticker4Client["pricePerBook"] = extendedQuote.pricePerBook
+      ticker4Client["shortRatio"] = extendedQuote.shortRatio
       ticker4Client["movingAve50days"] = extendedQuote.movingAve50days
       ticker4Client["movingAve200days"] = extendedQuote.movingAve200days
     end

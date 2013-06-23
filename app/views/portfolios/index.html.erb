@@ -26,19 +26,21 @@
 <!-- ================== Stock Ticker Table ========================== -->
 
     </br>
-    </br>
       <h3 id="portfolioNameInHeader"> </h3>
       <!-- Header added by portfolio.js function addStocksToTable -->
       <table id="portfolioAnalysisTable" class="table table-striped tablesorter">
         <thead>
           <tr>
-            <th>Ticker</th>
-            <th>Company Name</th>
-            <th>Market Cap</th>
-            <th>Fwd Price/Earnings</th>
-            <th>Price/ BookValue</th>
-            <th>ST Momentum</th>
-            <th>LT Momentum</th>
+            <th class='ticker'>Ticker</th>
+            <th class='companyName'>Company Name</th>
+            <th class='price'>Price</th>
+            <th class='mktCap'>Market Cap</th>
+            <th class='currentPE'>Current P/E</th>
+            <th class='fwdPE'>Forward P/E</th>
+            <th class='priceBook'>Price/Book</th>
+            <th class='shortRatio'>Short Ratio</th>
+            <th class='stMomentum'>ST Momentum<sup>1</sup></th>
+            <th class='ltMomentum'>LT Momentum<sup>2</sup></th>
           </tr>
         </thead> 
 
@@ -66,6 +68,14 @@
             <!-- Portfolio list added by js function addPortfolioToTable -->
           </tbody>
         </table>
+      </div>
+      <br/>
+      <br/>
+      <div>
+        <h4>Footnotes:</h4>
+        <h5><sup>1</sup> Short-term momentum is determined by comparing the current stock price to the 50-day moving average, and the 50-day moving average to the 200-day moving average.</h5>
+
+        <h5><sup>2</sup> Long-term momentum is determined by comparing <em>only</em> the 50-day moving average to the 200-day moving average.</h5>
       </div>
 
       <!-- CREATE PORTFOLIO MODAL
@@ -136,28 +146,6 @@
         </div>
       </div>
 
-      <!-- DELETE INDIVIDUAL TICKER CONFIRMATION MODAL
-          ============================================= -->
-
-      <!-- <div id="deleteStockModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-header">
-          <button type="button" class="cancelBtn close" data-dismiss="modal" aria-hidden="true">×</button>
-          <h3 id="myModalLabel">Delete this stock?</h3>
-        </div>
-        <div class="modal-body">
-          <p>Are you sure?</p>
-        </div>
-        <div class="modal-footer">
-          <button class="cancelBtn btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-          <button id="deleteStockBtn" class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Delete Stock</button>
-        </div>
-      </div>
-
-        
   </body>
 
 </html>
-
-
-  
-

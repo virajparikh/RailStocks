@@ -19,21 +19,18 @@ $(document).ready(function() {
 
 	var processTicker = function(ticker) {
 		var tdo = new TickerDomainObject(ticker);
-		ticker.id = ticker.symbol;
-		ticker.ForwardPE = tdo.calcForwardPE();
-		ticker.PriceToBook = tdo.calcPriceToBook();
 		ticker.stMomentum = tdo.calcSTMomentum();
 		ticker.ltMomentum = tdo.calcLTMomentum();
 	};
 
 	var showPortfolio = function(portfolio) { 
-		// replace the old stock table with the new stock table		
+		// replaces the old stock table with the new stock table		
 		$("#portfolioNameInHeader").empty();
 		$("#stockTable").empty();
 		$('#portfolioNameInHeader').html("Portfolio Analysis: <em>" + portfolio.name + "</em>");
 		
 		$.ajax({
-			url: '/portfolios/' + portfolio.id +'/details.json',
+			url: '/portfolios/' + portfolio.id + '/details.json',
 			type: "GET",
 			dataType: "json",
 			success: function(hashOfTickers) {
@@ -42,7 +39,7 @@ $(document).ready(function() {
 					processTicker(ticker);
 					addStocksToTable(ticker);
 				}
-			    $("#portfolioAnalysisTable").tablesorter();
+			    $("#portfolioAnalysisTable");
 			} // End success
 		}); // End .ajax()
 	};
@@ -144,14 +141,16 @@ $(document).ready(function() {
 	var addStocksToTable = function (ticker) {
       $('#stockTable').append(      	
 	      	"<tr class='stockRow' id='" + ticker.id + "'>" +
-	        "<td class='ticker'>" + ticker.id + "</td>" +
-	        "<td class='name'>" + ticker.name + "</td>" +
-	        "<td align='right' class='right mktcap'>" + ticker.marketCap + "</td>" +
-	        "<td align='center' class='fwdPE'>" + ticker.pricePerEPSEstimateNextYear + "x</td>" +
-	        "<td align='center' class='priceToBook'>" + ticker.pricePerBook + "x</td>" +
+	        "<td class='ticker'>" + ticker.symbol + "</td>" +
+	        "<td class='companyName'>" + ticker.name + "</td>" +
+	        "<td class='price'>$" + ticker.lastTrade + "</td>" +
+	        "<td class='mktCap'>$" + ticker.marketCap + "</td>" +
+	        "<td class='currentPE'>" + ticker.pricePerEPSEstimateCurrentYear + "x</td>" +
+	        "<td class='fwdPE'>" + ticker.pricePerEPSEstimateNextYear + "x</td>" +
+	        "<td class='priceBook'>" + ticker.pricePerBook + "x</td>" +
+	        "<td class='shortRatio'>" + ticker.shortRatio + "%</td>" +
 	        "<td class='stMomentum'>" + ticker.stMomentum + "</td>" +
 	        "<td class='ltMomentum'>" + ticker.ltMomentum + "</td>" +
-	        //"<td class='deleteStockIcon'>" + "<i class='icon-remove'></i>" + "</td>"
 	        "</tr>"  
 		    );
         };  
