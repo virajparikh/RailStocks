@@ -46,7 +46,6 @@ class PortfoliosController < ApplicationController
   end
 
   def details 
-
     symbols = Array.new() #["GOOG", "YHOO", "AAPL"]
 
     tickers = Ticker.find_all_by_portfolio_id(params[:id])
@@ -76,8 +75,6 @@ class PortfoliosController < ApplicationController
       ticker4Client["pricePerBook"] = extendedQuote.pricePerBook
       ticker4Client["movingAve50days"] = extendedQuote.movingAve50days
       ticker4Client["movingAve200days"] = extendedQuote.movingAve200days
-
-
     end
 
     respond_to do |format|
@@ -85,7 +82,6 @@ class PortfoliosController < ApplicationController
     end
 
   end
-
 
   private
    

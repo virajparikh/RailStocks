@@ -1,70 +1,48 @@
-// lastTrade: 413.5
-// marketCap: "388.1B"
-// movingAve50days: "431.59"
-// movingAve200days: "505.657"
-// name: "Apple Inc."
-// pricePerBook: 2.89
-// pricePerEPSEstimateNextYear: "9.53"
-// symbol: "AAPL"
-// volume: 17187478
-
     var TickerDomainObject = function(ticker){
     	this.ticker = ticker;
     };
 
     TickerDomainObject.prototype.calcSTMomentum = function() {
 			var ticker = this.ticker,
-				price_GT_50Day_GT_200Day = ticker.lastTrade > ticker.											movingAve50days
-											&& ticker.movingAve50days > ticker.movingAve200days,
-	// :last_trade_price > :moving_average_50_day && :moving_average_50_day >:moving_average_200_day 
-				price_LT_50Day_GT_200Day = ticker.lastTrade < ticker.											movingAve50days 
-				  						    && ticker.movingAve50days > ticker.movingAve200days,
-	// :last_trade_price < :moving_average_50_day && :moving_average_50_day >:moving_average_200_day 
-				price_GT_50day_LT_200Day = ticker.lastTrade > ticker.											movingAve50days 
-					   						&& ticker.movingAve50days < ticker.movingAve200days,
-	// :last_trade_price > :moving_average_50_day && :moving_average_50_day <:moving_average_200_day 
-				price_LT_50day_LT_200Day = ticker.lastTrade < ticker.											movingAve50days 
-					   						&& ticker.movingAve50days < ticker.movingAve200days;
-	// :last_trade_price < :moving_average_50_day && :moving_average_50_day <:moving_average_200_day 
+				price_GT_50Day_GT_200Day = ticker.lastTrade > ticker.movingAve50days
+										&& ticker.movingAve50days > ticker.movingAve200days,
+				price_LT_50Day_GT_200Day = ticker.lastTrade < ticker.movingAve50days 
+				  						&& ticker.movingAve50days > ticker.movingAve200days
+				price_GT_50day_LT_200Day = ticker.lastTrade > ticker.movingAve50days 
+					   					&& ticker.movingAve50days < ticker.movingAve200days,
+				price_LT_50day_LT_200Day = ticker.lastTrade < ticker.movingAve50days 
+					   					&& ticker.movingAve50days < ticker.movingAve200days;
 
 			if ( price_GT_50Day_GT_200Day ) {
 				return "Positive ST Momentum"
-	// :last_trade_price > :moving_average_50_day && :moving_average_50_day >:moving_average_200_day 
 
 			} else if ( price_LT_50Day_GT_200Day || price_GT_50day_LT_200Day ){
 				return "Neutral ST Momentum"
-	// :last_trade_price > :moving_average_50_day && :moving_average_50_day <:moving_average_200_day 
-	// :last_trade_price < :moving_average_50_day && :moving_average_50_day >:moving_average_200_day 
 
 			} else if (price_LT_50day_LT_200Day) {
 				return "Negative ST Momentum"
-	// :last_trade_price < :moving_average_50_day && :moving_average_50_day <:moving_average_200_day 
-
+			
 			} else {
 				return "!! Bad Data !!"
 				}
 	};
     
     TickerDomainObject.prototype.calcLTMomentum = function(){
-		if (this.ticker.movingAve50days > this.ticker.movingAve200days) { //_50Day_GT_200Day = ticker.movingAve50days > ticker.movingAve200days,
+		if (this.ticker.movingAve50days > this.ticker.movingAve200days) { 
 			return "Positive LT Momentum";
-	// :moving_average_50_day >:moving_average_200_day 
+		
 		} else {
 			return "Negative LT Momentum";
-	// :moving_average_50_day <:moving_average_200_day 
-
 		}		
 	};  
 
     TickerDomainObject.prototype.calcForwardPE = function(){
-		return parseFloat(this.ticker.lastTrade, 10) / parseFloat(this.ticker.EPSEstimateNextYear, 10);
+		return (this.ticker.last_trade_price) / (this.ticker.eps_estimate_next_year);
     }
-    // :last_trade_price / :eps_estimate_next_year 
-	
+
 	TickerDomainObject.prototype.calcPriceToBook = function(){
-    	return parseFloat(this.ticker.lastTrade, 10) / parseFloat(this.ticker.BookValue, 10);
+    	return (this.ticker.last_trade_price) / (this.ticker.book_value);
     };
-    // :price_per_book
 
 // The full list of YahooFinance fields follows:
 //      :ask

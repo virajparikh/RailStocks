@@ -17,20 +17,6 @@ $(document).ready(function() {
 	    return portfolio;  // this is passed into the createPortfolio function below
 	};
 
-	// var createYQLURL = function(portfolio){
-	//     var baseYQLURL = 'https://query.yahooapis.com/v1/public/yql?env=http%3A%2F%2Fdatatables.org%2Falltables.env&format=json&q=';
-	//     //.stocks = portfolio.stock.split("', '");
-	// 	var yqlQuery = 'select * from yahoo.finance.quotes where symbol in (';
-	// 	    for( var i = 0; i < portfolio.stocks.length; i++){
-	// 	        yqlQuery += '"' + portfolio.stocks[i] + '"';
-	// 	        yqlQuery += i === (portfolio.stocks.length - 1) ? "" : ",";		        
-	// 	    }
-	// 	    yqlQuery += ')';
-	
-	//     var yqlURL = baseYQLURL + encodeURI(yqlQuery);
-	//     return yqlURL;
-	// };
-
 	var processTicker = function(ticker) {
 		var tdo = new TickerDomainObject(ticker);
 		ticker.id = ticker.symbol;
@@ -46,34 +32,17 @@ $(document).ready(function() {
 		$("#stockTable").empty();
 		$('#portfolioNameInHeader').html("Portfolio Analysis: <em>" + portfolio.name + "</em>");
 		
-		// var yqlurl = createYQLURL(portfolio);
-		
 		$.ajax({
 			url: '/portfolios/' + portfolio.id +'/details.json',
 			type: "GET",
 			dataType: "json",
 			success: function(hashOfTickers) {
-
 				for(symbol_which_is_key in hashOfTickers){
 					ticker = hashOfTickers[symbol_which_is_key]
 					processTicker(ticker);
 					addStocksToTable(ticker);
 				}
-
 			    $("#portfolioAnalysisTable").tablesorter();
-
-			// success: function(stocksjson) {
-			// 	if ( stocksjson.query.results && stocksjson.query.results.quote ) {
-			// 			for (var i = 0; i < stocksjson.query.count; i++) {  
-			// 				var stock = stocksjson.query.results.quote[i]; //digs into the layers of the json file and returns only the relevant stock data
-			// 				processStock(stock);
-			// 				addStocksToTable(stock);	
-			// 				$("#portfolioAnalysisTable").tablesorter();	//not working properly	
-			// 			}
-			// 	} else {
-			// 		alert("Failed to retrieve data from Yahoo Finance. Please try again later.");
-			// 	}
-
 			} // End success
 		}); // End .ajax()
 	};
