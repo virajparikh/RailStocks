@@ -16,6 +16,10 @@ HTML BODY {
   margin-right: 150px;
 }
 
+.homepage {
+  margin-right: 300px;
+}
+
 .black-bar {
   text-align: right;
   margin-right: 100px;
@@ -59,7 +63,7 @@ HTML BODY {
   width: 50px;
 }
 
-.fwdPE {
+.forwardPE {
   width: 50px;
 }
 

@@ -10,8 +10,6 @@ A Javascript version is here: https://nss_equityresearch.backliftapp.com/pages/P
 Project Status
 --------------
 
-[![Code Climate](https://codeclimate.com/github/virajparikh/RailStocks.png)](https://codeclimate.com/github/virajparikh/RailStocks)
-
 [![Build Status](https://travis-ci.org/virajparikh/RailStocks.png)](https://travis-ci.org/virajparikh/RailStocks)
 
 

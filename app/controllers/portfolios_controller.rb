@@ -53,8 +53,8 @@ class PortfoliosController < ApplicationController
       symbols << t.name
     }
 
+    s_data = YahooFinance.get_standard_quotes(symbols)
     e_data = YahooFinance.get_extended_quotes(symbols)
-    q_data = YahooFinance.get_standard_quotes(symbols)
 
     portfolio_hash = Hash.new()
 
@@ -63,10 +63,10 @@ class PortfoliosController < ApplicationController
       portfolio_hash[symbol] = Hash.new()
       ticker4Client = portfolio_hash[symbol]
 
-      standardQuote = q_data[symbol]
+      standardQuote = s_data[symbol]
       extendedQuote = e_data[symbol]
 
-      ticker4Client["symbol"] = extendedQuote.symbol
+      ticker4Client["symbol"] = standardQuote.symbol
       ticker4Client["name"] = standardQuote.name
       ticker4Client["lastTrade"] = standardQuote.lastTrade
       ticker4Client["volume"] = standardQuote.volume
