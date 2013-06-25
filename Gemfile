@@ -30,6 +30,7 @@ group :test do
   gem 'database_cleaner'
   gem 'rspec-rails'
   gem 'launchy'
+  gem 'selenium-webdriver'
 end
 
 group :development do

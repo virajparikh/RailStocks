@@ -19,10 +19,16 @@ class PortfoliosController < ApplicationController
 
     respond_to do |format|
       if @portfolio.save
-        format.html  { flash[:notice] = "Success! Your '#{portfolio.name}' portfolio has been created.",             redirect_to(@portfolio) }
+        format.html  do 
+          flash[:notice] = "Success! Your '#{portfolio.name}' portfolio has been created."
+          redirect_to(@portfolio)
+        end
         format.json  { render :json => @portfolio, :status => :created }
-      else
-        format.html  { flash[:notice] = "Sorry! Your '#{portfolio.name}' portfolio did not save. That portfolio name already exists.", redirect_to(@portfolio) }
+      else 
+        format.html do
+          flash[:notice] = "Sorry! Your '#{portfolio.name}' portfolio did not save. That portfolio name already exists."
+          redirect_to(@portfolio)
+        end
         format.json  { render :json => @portfolio.errors, :status => :unprocessable_entity }
       end
     end

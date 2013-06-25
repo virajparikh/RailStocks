@@ -8,12 +8,12 @@
 
 HTML BODY {
   background-color: #FFF;
-  background-image: url(../assets/Grunge-1.png);
+  background-image: url(../assets/Grunge-2.png);
   background-repeat: repeat;
   background-position: top left;
   padding-top: 70px;
   margin-left: 150px;
-  margin-right: 500px;
+  margin-right: 400px;
 }
 
 .homepage {

@@ -14,7 +14,7 @@ $(document).ready(function() {
 		            portfolio.tickers_attributes.push(tickerObj);
 		        }	
 		    }
-	    return portfolio;  // this is passed into the createPortfolio function below
+	    return portfolio;  // this is passed into various functions, incl createPortfolio, below
 	};
 
 	var processTicker = function(ticker) {
@@ -58,6 +58,7 @@ $(document).ready(function() {
 	}
 
 //load portfolios created on document.ready
+	showPortfolio.first
 	getPortfolios();
 
 //+++++++++++ Create Portfolio ++++++++++++++++++++++++++++++++++++++++++++
@@ -191,16 +192,13 @@ $(document).ready(function() {
 	$("body").on("click", ".editPortfolioBtn", function() {
 		var p_id = $(this).closest("tr").attr('id')
 		getPortfolioForEdit(p_id);
-	})
-	//Edit Portfolio modal, Update Portfolio button
-	$("#submitUpdatePortfolioBtn").click(function(){
-		// getPortfolioForEdit(portfolio);
-
-		var portfolio = createPortfolioFromInput($("#updatePortfolioName").html(), $("#updateTickerInput").val());
-
-		updatePortfolio(portfolio);
-		clearForm();
-	});
+		})
+		//Edit Portfolio modal, Update Portfolio button
+		$("#submitUpdatePortfolioBtn").click(function(){
+			var portfolio = createPortfolioFromInput($("#updatePortfolioName").html(), $("#updateTickerInput").val());
+			updatePortfolio(portfolio);
+			clearForm();
+		});
 
 	//Delete Portfolio button
 	$("body").on("click", ".deletePortfolioBtn", function() {
