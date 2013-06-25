@@ -13,7 +13,7 @@ HTML BODY {
   background-position: top left;
   padding-top: 70px;
   margin-left: 150px;
-  margin-right: 150px;
+  margin-right: 500px;
 }
 
 .homepage {
@@ -24,6 +24,10 @@ HTML BODY {
   text-align: right;
   margin-right: 100px;
 }
+
+/*.portfolioAnalysisTable {
+  border: double;
+}*/
 
 .ticker {
   width: 35px;

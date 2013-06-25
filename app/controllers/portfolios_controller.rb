@@ -3,7 +3,7 @@ class PortfoliosController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    portfolios = Portfolio.find_all_by_user_id(get_user_id)
+    @portfolios = Portfolio.find_all_by_user_id(get_user_id)
     respond_to do |format|
       format.json{ render json: Portfolio.includes(:tickers)
                                          .find_all_by_user_id(get_user_id)
@@ -14,34 +14,60 @@ class PortfoliosController < ApplicationController
   end
 
   def create
-    portfolio = Portfolio.new(params[:portfolio])
-    portfolio.user = User.find_by_id(get_user_id)
-    portfolio.save
-    render :nothing => true, :status => 200
-    if portfolio.save
-      flash[:notice] = "Success! Your '#{portfolio.name}' portfolio has been created."
-    else  
-      flash[:notice] = "Sorry! Your '#{portfolio.name}' portfolio did not save. That portfolio name already exists."
+    @portfolio = Portfolio.new(params[:portfolio])
+    @portfolio.user = User.find_by_id(get_user_id)
+
+    respond_to do |format|
+      if @portfolio.save
+        format.html  { redirect_to(@portfolio,
+                      :notice => "Success! Your '#{portfolio.name}' portfolio has been created.") }
+        format.json  { render :json => @portfolio,
+                      :status => :created }
+      else
+        format.html  { redirect_to(@portfolio,
+                      :notice => "Sorry! Your '#{portfolio.name}' portfolio did not save. That portfolio name already exists.") }
+        format.json  { render :json => @portfolio.errors,
+                      :status => :unprocessable_entity }
+      end
     end
   end
 
   def show
     respond_to do |format|
+       format.html
        format.json{ render json: Portfolio.includes(:tickers)
                                           .find_by_id(params[:id])
                                           .as_json(:include => :tickers)}
     end
   end
 
-  def update(incoming_portfolio)
-    portfolio = Portfolio.new(incoming_portfolio.id)
-    portfolio.tickers = incoming_portfolio.tickers
-    portfolio.save()
+  def update
+    @portfolio = Portfolio.find(params[:id])
+
+    respond_to do |format|
+      if @portfolio.update_attributes(params[:portfolio])
+        format.html { redirect_to(@portfolio,
+                      :notice => "Portfolio was successfully updated.") }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to(@portfolio,
+                      :notice => "Portfolio was NOT updated.") }
+        format.json { render :json => @portfolio.errors,
+                    :status => :unprocessable_entity }
+      end
+    end
   end
 
+  # def update(incoming_portfolio)
+  #   portfolio = Portfolio.new(incoming_portfolio.id)
+  #   portfolio.tickers = incoming_portfolio.tickers
+  #   portfolio.save
+  #   render :nothing => true, :status => 200
+  # end
+
   def destroy
-    portfolio = Portfolio.find(params[:id])
-    portfolio.destroy
+    @portfolio = Portfolio.find(params[:id])
+    @portfolio.destroy
     index
   end
 

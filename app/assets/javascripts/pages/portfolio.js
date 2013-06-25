@@ -24,7 +24,7 @@ $(document).ready(function() {
 	};
 
 	var showPortfolio = function(portfolio) { 
-		// replaces the old stock table with the new stock table		
+		// replaces the old stock table with the new stock table
 		$("#portfolioNameInHeader").empty();
 		$("#stockTable").empty();
 		$('#portfolioNameInHeader').html("Portfolio Analysis: <em>" + portfolio.name + "</em>");
@@ -34,12 +34,12 @@ $(document).ready(function() {
 			type: "GET",
 			dataType: "json",
 			success: function(hashOfTickers) {
-				for(symbol_which_is_key in hashOfTickers){
-					ticker = hashOfTickers[symbol_which_is_key]
-					processTicker(ticker);
-					addStocksToTable(ticker);
-				}
-			    $("#portfolioAnalysisTable");
+				for (symbol_which_is_key in hashOfTickers) {
+				  ticker = hashOfTickers[symbol_which_is_key]
+				  processTicker(ticker);
+				  addStocksToTable(ticker);
+				  }
+			    // $("#portfolioAnalysisTable").tablesorter;
 			} // End success
 		}); // End .ajax()
 	};
@@ -68,9 +68,9 @@ $(document).ready(function() {
 			data: JSON.stringify({portfolio: portfolio}),
 			dataType: 'json',
 			contentType:'application/json',
-			success: function(portfolio) {    
+			success: function(portfolio) {
 	   			showPortfolio(portfolio);
-	   			addPortfolioToTable(portfolio);  
+	   			addPortfolioToTable(portfolio); 
 	   		}
 	   	});
 	};
@@ -95,26 +95,23 @@ $(document).ready(function() {
 			type: "GET",
 			dataType: "json",
 			success: function(portfolio) {
-				$("#updatePortfolioName").attr("data-portfolioId", id);
+				$("#updatePortfolioName").attr("data-portfolioId");
 	   			$("#updatePortfolioName").html(portfolio.name);
 	   			var symbols = "";
 	   			
 	   			for(var i = 0; i < portfolio.tickers.length; i++){
 	   				symbols += portfolio.tickers[i].name + " ";
 	   			};
-	   			
-	   			$("#updateTickerInput").val(symbols);
+	   		$("#updateTickerInput").val(symbols);
 	   		}
 	   	});
 	};
 
-//+++++++++++ for use with Edit Portfolio button ++++++++++++++++++++++++++++++++++++++++++++
+//++++++++ Edit Portfolio modal - Update Portfolio button ++++++++++++++++++++++++++++
 	var	updatePortfolio = function(portfolio){	
 		var id = $("#updatePortfolioName").attr("data-portfolioId");
-		debugger;
-		portfolio.id = id;	
 		$.ajax({
-			url: '/portfolios/' + id +'.json',
+			url: '/portfolios/' + id + '.json',
 			type: "PUT",
 			data: JSON.stringify(portfolio),
 			contentType:'application/json',
@@ -127,7 +124,7 @@ $(document).ready(function() {
 //+++++++++++ Delete Portfolio ++++++++++++++++++++++++++++++++++++++++++++
 	var deletePortfolio = function(id) {
 		$.ajax({
-			url: '/portfolios/' + id +'.json',
+			url: '/portfolios/' + id + '.json',
 			type: "DELETE",
 			dataType: "json",
 			success: function() {   
@@ -143,15 +140,15 @@ $(document).ready(function() {
 	      	"<tr class='stockRow' id='" + ticker.id + "'>" +
 	        "<td class='ticker'>" + ticker.symbol + "</td>" +
 	        "<td class='companyName'>" + ticker.name + "</td>" +
-	        "<td class='price'>$" + ticker.lastTrade + "</td>" +
+	        "<td class='price'>$" + ticker.lastTrade.toFixed(2) + "</td>" +
 	        "<td class='mktCap'>$" + ticker.marketCap + "</td>" +
 	        "<td class='divYield'>" + ticker.dividendYield + "%</td>" +
 	        "<td class='priceSales'>" + ticker.pricePerSales + "x</td>" +
-	        "<td class='trailingPE'>" + ticker.peRatio + "x</td>" +
+	        "<td class='trailingPE'>" + ticker.peRatio.toFixed(2) + "x</td>" +
 	        "<td class='currentPE'>" + ticker.pricePerEPSEstimateCurrentYear + "x</td>" +
 	        "<td class='forwardPE'>" + ticker.pricePerEPSEstimateNextYear + "x</td>" +
-	        "<td class='priceBook'>" + ticker.pricePerBook + "x</td>" +
-	        "<td class='pegRatio'>" + ticker.pegRatio + "x</td>" +
+	        "<td class='priceBook'>" + ticker.pricePerBook.toFixed(2) + "x</td>" +
+	        "<td class='pegRatio'>" + ticker.pegRatio.toFixed(2) + "x</td>" +
 	        "<td class='shortRatio'>" + ticker.shortRatio + "%</td>" +
 	        "<td class='stMomentum'>" + ticker.stMomentum + "</td>" +
 	        "<td class='ltMomentum'>" + ticker.ltMomentum + "</td>" +
@@ -159,7 +156,7 @@ $(document).ready(function() {
 		    );
         };  
 
-//+++++++++++ Create Portfolio List ++++++++++++++++++++++++++++++++++++++++   
+//+++++++++++ Create Portfolio List with View, Edit, Delete buttons ++++++++++++++   
     var addPortfolioToTable = function(portfolio) {
       $('#portfolioList').append(      	
       	'<tr class="portfolioRow" id="' + portfolio.id + '">' + '<td class="portfolioName">' + '<em><h4>' + portfolio.name + '</h4></em>' + '</td>' + '<td>' + '<div class="pull-right">' + 
@@ -181,7 +178,7 @@ $(document).ready(function() {
 		var portfolio = createPortfolioFromInput($("#createPortfolioName").val(), $("#addTickerInput").val());
 		createPortfolio(portfolio);
 		clearForm();
-		addPortfolioToTable(portfolio);
+		// addPortfolioToTable(portfolio);
 	});
 
 	//View Portfolio button
