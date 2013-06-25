@@ -4,12 +4,12 @@ class PortfoliosController < ApplicationController
 
   def index
     @portfolios = Portfolio.find_all_by_user_id(get_user_id)
+
     respond_to do |format|
+      format.html{ render :index }
       format.json{ render json: Portfolio.includes(:tickers)
                                          .find_all_by_user_id(get_user_id)
-                                         .as_json(:include => :tickers)
-                  }
-      format.html{ render :index }
+                                         .as_json(:include => :tickers) }
     end
   end
 
@@ -19,15 +19,11 @@ class PortfoliosController < ApplicationController
 
     respond_to do |format|
       if @portfolio.save
-        format.html  { redirect_to(@portfolio,
-                      :notice => "Success! Your '#{portfolio.name}' portfolio has been created.") }
-        format.json  { render :json => @portfolio,
-                      :status => :created }
+        format.html  { flash[:notice] = "Success! Your '#{portfolio.name}' portfolio has been created.",             redirect_to(@portfolio) }
+        format.json  { render :json => @portfolio, :status => :created }
       else
-        format.html  { redirect_to(@portfolio,
-                      :notice => "Sorry! Your '#{portfolio.name}' portfolio did not save. That portfolio name already exists.") }
-        format.json  { render :json => @portfolio.errors,
-                      :status => :unprocessable_entity }
+        format.html  { flash[:notice] = "Sorry! Your '#{portfolio.name}' portfolio did not save. That portfolio name already exists.", redirect_to(@portfolio) }
+        format.json  { render :json => @portfolio.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -46,11 +42,11 @@ class PortfoliosController < ApplicationController
 
     respond_to do |format|
       if @portfolio.update_attributes(params[:portfolio])
-        format.html { redirect_to(@portfolio,
+        format.html { redirect_to(index,
                       :notice => "Portfolio was successfully updated.") }
         format.json { head :no_content }
       else
-        format.html { redirect_to(@portfolio,
+        format.html { redirect_to(index,
                       :notice => "Portfolio was NOT updated.") }
         format.json { render :json => @portfolio.errors,
                     :status => :unprocessable_entity }

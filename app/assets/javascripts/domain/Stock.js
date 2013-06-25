@@ -1,48 +1,48 @@
-    var TickerDomainObject = function(ticker){
-    	this.ticker = ticker;
-    };
+var TickerDomainObject = function(ticker){
+  this.ticker = ticker;
+};
 
-    TickerDomainObject.prototype.calcSTMomentum = function() {
-			var ticker = this.ticker,
-				price_GT_50Day_GT_200Day = ticker.lastTrade > ticker.movingAve50days
-										&& ticker.movingAve50days > ticker.movingAve200days,
-				price_LT_50Day_GT_200Day = ticker.lastTrade < ticker.movingAve50days 
-				  						&& ticker.movingAve50days > ticker.movingAve200days
-				price_GT_50day_LT_200Day = ticker.lastTrade > ticker.movingAve50days 
-					   					&& ticker.movingAve50days < ticker.movingAve200days,
-				price_LT_50day_LT_200Day = ticker.lastTrade < ticker.movingAve50days 
-					   					&& ticker.movingAve50days < ticker.movingAve200days;
+TickerDomainObject.prototype.calcSTMomentum = function() {
+	// var ticker = this.ticker,
+	price_GT_50Day_GT_200Day = ticker.lastTrade > ticker.movingAve50days
+							&& ticker.movingAve50days > ticker.movingAve200days,
+	price_LT_50Day_GT_200Day = ticker.lastTrade < ticker.movingAve50days 
+	  						&& ticker.movingAve50days > ticker.movingAve200days
+	price_GT_50day_LT_200Day = ticker.lastTrade > ticker.movingAve50days 
+		   					&& ticker.movingAve50days < ticker.movingAve200days,
+	price_LT_50day_LT_200Day = ticker.lastTrade < ticker.movingAve50days 
+		   					&& ticker.movingAve50days < ticker.movingAve200days;
 
-			if ( price_GT_50Day_GT_200Day ) {
-				return "Positive"
+	if ( price_GT_50Day_GT_200Day ) {
+		return "Positive"
 
-			} else if ( price_LT_50Day_GT_200Day || price_GT_50day_LT_200Day ){
-				return "Neutral"
+	} else if ( price_LT_50Day_GT_200Day || price_GT_50day_LT_200Day ){
+		return "Neutral"
 
-			} else if (price_LT_50day_LT_200Day) {
-				return "Negative"
-			
-			} else {
-				return "!! Bad Data !!"
-				}
-	};
-    
-    TickerDomainObject.prototype.calcLTMomentum = function(){
-		if (this.ticker.movingAve50days > this.ticker.movingAve200days) { 
-			return "Positive";
-		
-		} else {
-			return "Negative";
-		}		
-	};  
+	} else if (price_LT_50day_LT_200Day) {
+		return "Negative"
+	
+	} else {
+		return "!! Bad Data !!"
+	}
+};
 
-    TickerDomainObject.prototype.calcForwardPE = function(){
-		return (this.ticker.last_trade_price) / (this.ticker.eps_estimate_next_year);
-    }
+TickerDomainObject.prototype.calcLTMomentum = function(){
+	if (this.ticker.movingAve50days > this.ticker.movingAve200days) { 
+		return "Positive";
+	
+	} else {
+		return "Negative";
+	}		
+};  
 
-	TickerDomainObject.prototype.calcPriceToBook = function(){
-    	return (this.ticker.last_trade_price) / (this.ticker.book_value);
-    };
+// TickerDomainObject.prototype.calcForwardPE = function(){
+// 	return (this.ticker.last_trade_price) / (this.ticker.eps_estimate_next_year);
+// }
+
+// TickerDomainObject.prototype.calcPriceToBook = function(){
+// 	return (this.ticker.last_trade_price) / (this.ticker.book_value);
+// };
 
 // for Apple: 
 

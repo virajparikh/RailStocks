@@ -27,7 +27,7 @@ $(document).ready(function() {
 		// replaces the old stock table with the new stock table
 		$("#portfolioNameInHeader").empty();
 		$("#stockTable").empty();
-		$('#portfolioNameInHeader').html("Portfolio Analysis: <em>" + portfolio.name + "</em>");
+		$("#portfolioNameInHeader").html("Portfolio Analysis: <em>" + portfolio.name + "</em>");
 		
 		$.ajax({
 			url: '/portfolios/' + portfolio.id + '/details.json',
@@ -95,14 +95,15 @@ $(document).ready(function() {
 			type: "GET",
 			dataType: "json",
 			success: function(portfolio) {
-				$("#updatePortfolioName").attr("data-portfolioId");
+				$("#updatePortfolioName").attr("data-portfolioId", id);
 	   			$("#updatePortfolioName").html(portfolio.name);
 	   			var symbols = "";
 	   			
-	   			for(var i = 0; i < portfolio.tickers.length; i++){
+	   			for (var i = 0; i < portfolio.tickers.length; i++) {
 	   				symbols += portfolio.tickers[i].name + " ";
-	   			};
-	   		$("#updateTickerInput").val(symbols);
+	   				};
+
+	   			$("#updateTickerInput").val(symbols);
 	   		}
 	   	});
 	};
@@ -116,7 +117,7 @@ $(document).ready(function() {
 			data: JSON.stringify(portfolio),
 			contentType:'application/json',
 			success: function() {
-	   			showPortfolio(portfolio);
+	   			showPortfolio(id);
 	   		}
 	   	});
 	};
@@ -178,7 +179,6 @@ $(document).ready(function() {
 		var portfolio = createPortfolioFromInput($("#createPortfolioName").val(), $("#addTickerInput").val());
 		createPortfolio(portfolio);
 		clearForm();
-		// addPortfolioToTable(portfolio);
 	});
 
 	//View Portfolio button
@@ -194,7 +194,7 @@ $(document).ready(function() {
 	})
 	//Edit Portfolio modal, Update Portfolio button
 	$("#submitUpdatePortfolioBtn").click(function(){
-		getPortfolioForEdit(portfolio);
+		// getPortfolioForEdit(portfolio);
 
 		var portfolio = createPortfolioFromInput($("#updatePortfolioName").html(), $("#updateTickerInput").val());
 
