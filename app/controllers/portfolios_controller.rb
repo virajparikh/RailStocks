@@ -29,7 +29,7 @@ class PortfoliosController < ApplicationController
           flash[:notice] = "Sorry! Your '#{portfolio.name}' portfolio did not save. That portfolio name already exists."
           redirect_to(@portfolio)
         end
-        format.json  { render :json => @portfolio.errors, :status => :unprocessable_entity }
+        format.json  { render :json => @portfolio, :status => :unprocessable_entity }
       end
     end
   end
@@ -45,7 +45,7 @@ class PortfoliosController < ApplicationController
 
   def update
     @portfolio = Portfolio.find(params[:id])
-
+    @portfolio.tickers.clear()
     respond_to do |format|
       if @portfolio.update_attributes(params[:portfolio])
         format.html { redirect_to(index,

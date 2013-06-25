@@ -71,8 +71,13 @@ $(document).ready(function() {
 			contentType:'application/json',
 			success: function(portfolio) {
 	   			showPortfolio(portfolio);
-	   			addPortfolioToTable(portfolio); 
+	   			addPortfolioToTable(portfolio);
+	   			alert("The " + portfolio.name + " portfolio was created.");
+	   		},
+	   		error: function(portfolio) {
+	   			alert("The " + JSON.parse(portfolio.responseText).name + " portfolio already exists.");
 	   		}
+
 	   	});
 	};
 
@@ -112,13 +117,15 @@ $(document).ready(function() {
 //++++++++ Edit Portfolio modal - Update Portfolio button ++++++++++++++++++++++++++++
 	var	updatePortfolio = function(portfolio){	
 		var id = $("#updatePortfolioName").attr("data-portfolioId");
+		portfolio.id = id;
 		$.ajax({
 			url: '/portfolios/' + id + '.json',
 			type: "PUT",
 			data: JSON.stringify(portfolio),
 			contentType:'application/json',
 			success: function() {
-	   			showPortfolio(id);
+	   			showPortfolio(portfolio);
+	   			alert("The " + portfolio.name + " portfolio was updated.");
 	   		}
 	   	});
 	};
@@ -130,7 +137,7 @@ $(document).ready(function() {
 			type: "DELETE",
 			dataType: "json",
 			success: function() {   
-				alert("The '"+ $("#" + id + " td h4").html() + "' portfolio was deleted.");  
+				alert("The "+ $("#" + id + " td h4").html() + " portfolio was deleted.");  
 				$('#' + id).remove();  
 			} // End success
 		}); // End .ajax()
@@ -204,12 +211,6 @@ $(document).ready(function() {
 	$("body").on("click", ".deletePortfolioBtn", function() {
 		var p_id = $(this).closest("tr").attr('id')
 		deletePortfolio(p_id);
-	})
-
-	//Delete individual stocks from the table and the displayed portfolio
-	$("body").on("click", ".deleteStockIcon", function(stock) {
-		var st = $(this).closest("tr").attr('id')
-		deleteStock(stock);
 	})
 
 	//Cancel and 'x' button
