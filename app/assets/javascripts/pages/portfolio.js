@@ -21,6 +21,7 @@ $(document).ready(function() {
 		var tdo = new TickerDomainObject(ticker);
 		ticker.stMomentum = tdo.calcSTMomentum();
 		ticker.ltMomentum = tdo.calcLTMomentum();
+		ticker.sharesOut = tdo.calcSharesOut();
 	};
 
 	var showPortfolio = function(portfolio) { 
@@ -150,6 +151,7 @@ $(document).ready(function() {
 	        "<td class='ticker'>" + ticker.symbol + "</td>" +
 	        "<td class='companyName'>" + ticker.name + "</td>" +
 	        "<td class='price'>$" + ticker.lastTrade.toFixed(2) + "</td>" +
+	        "<td class='sharesOut'>" + ticker.sharesOut.toFixed(3) + "B</td>" +
 	        "<td class='mktCap'>$" + ticker.marketCap + "</td>" +
 	        "<td class='divYield'>" + ticker.dividendYield + "%</td>" +
 	        "<td class='priceSales'>" + ticker.pricePerSales + "x</td>" +

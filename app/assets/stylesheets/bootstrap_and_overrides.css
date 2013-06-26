@@ -51,28 +51,32 @@ HTML BODY {
   width: 35px;
 }
 
+.sharesOut {
+  width: 50px;
+}
+
 .mktCap {
-  width: 65px;
+  width: 50px;
 }
 
 .divYield {
-  width: 55px;
+  width: 50px;
 }
 
 .priceSales {
-  width: 50px;
+  width: 45px;
 }
 
 .trailingPE {
-  width: 50px;
+  width: 45px;
 }
 
 .currentPE {
-  width: 50px;
+  width: 45px;
 }
 
 .forwardPE {
-  width: 50px;
+  width: 45px;
 }
 
 .priceBook {
@@ -88,11 +92,11 @@ HTML BODY {
 }
 
 .stMomentum {
-  width: 70px;
+  width: 65px;
 }
 
 .ltMomentum {
-  width: 70px;
+  width: 65px;
 }
 
 #heatmap {

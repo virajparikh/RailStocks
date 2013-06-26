@@ -34,14 +34,18 @@ TickerDomainObject.prototype.calcLTMomentum = function(){
 	} else {
 		return "Negative";
 	}		
-};  
+};
+
+TickerDomainObject.prototype.calcSharesOut = function(){
+	return parseFloat(this.ticker.marketCap, 10) / (this.ticker.lastTrade);
+};
 
 // TickerDomainObject.prototype.calcForwardPE = function(){
-// 	return (this.ticker.last_trade_price) / (this.ticker.eps_estimate_next_year);
-// }
+// 	return (this.ticker.lastTrade) / (this.ticker.epsEstimateNextYear);
+// };
 
 // TickerDomainObject.prototype.calcPriceToBook = function(){
-// 	return (this.ticker.last_trade_price) / (this.ticker.book_value);
+// 	return (this.ticker.lastTrade) / (this.ticker.bookValue);
 // };
 
 // for Apple: 

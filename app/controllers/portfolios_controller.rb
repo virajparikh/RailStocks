@@ -60,13 +60,6 @@ class PortfoliosController < ApplicationController
     end
   end
 
-  # def update(incoming_portfolio)
-  #   portfolio = Portfolio.new(incoming_portfolio.id)
-  #   portfolio.tickers = incoming_portfolio.tickers
-  #   portfolio.save
-  #   render :nothing => true, :status => 200
-  # end
-
   def destroy
     @portfolio = Portfolio.find(params[:id])
     @portfolio.destroy
