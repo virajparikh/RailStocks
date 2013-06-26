@@ -1,3 +1,20 @@
-<h3>Welcome <%= current_user.email %>, this is your RailStocks dashboard.  Use this to customize your RailStocks experience.</h3>
+<!-- ================== Top Navigation Bar ========================== -->
 
-<h4><a class="btn btn-info" href="*">Return to RailStocks</a></h4>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+          <div class="nav-collapse collapse"></br>
+             <ul class="black-bar pull-right">Welcome, <%= link_to current_user.email, dashboard_index_path %>.   Not you?  <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>  
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+
+<div class="container">
+
+<h3>Welcome <%= current_user.email %>, </br>
+	This is your RailStocks dashboard.  Use this page to customize your RailStocks experience.</h3>
+</br>
+</br>
+<h4><a class="btn btn-info" href="/portfolios">Return to RailStocks</a></h4>
+
+</div>

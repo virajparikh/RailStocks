@@ -20,6 +20,10 @@ HTML BODY {
   margin-right: 300px;
 }
 
+#Logo {
+  margin-left: -20px;
+}
+
 .black-bar {
   text-align: right;
   margin-right: 100px;
