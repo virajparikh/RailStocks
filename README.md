@@ -49,11 +49,11 @@ YahooFinance - for stock data
 
 Bugs
 ----
-Yup
+Version 1.0 is simple and, I believe, free of major bugs.
 
 About Author
 ------------
-Viraj Parikh is an investment research analyst and portfolio manager for most of his professional career.  He has worked with the most widely used data services on the market, including Bloomberg, Capital IQ and Factset.  He has also made extensive use of free web sites, including Yahoo Finance, Google Finance and Finviz.  These experiences have shaped his vision for this app.
+Viraj Parikh has been an investment analyst and portfolio manager for much of his professional career.  He has worked with the most widely used data services on the market, including Bloomberg, Capital IQ and Factset.  He has also made extensive use of numerous finance web sites, including the SEC Edgar database, Yahoo and Google Finance, and Finviz.  These experiences will continue to guide the further development of this app.
 
 License
 --------
