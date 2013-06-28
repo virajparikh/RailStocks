@@ -19,27 +19,14 @@ Features
 4. View a pre-packaged stock and valuation summary of your portfolio
 
 User Experience
--
-1. When you go to the RailStocks site for the first time, you will see buttons to:
--
-- Register for RailStocks
-- Log into RailStocks
-- go directly to RailStocks
-- Other resources - to be developed in FUTURE versions of RailStocks:
-- - SEC Edgar database access
-- - StockTwits functionality
-- - Investor education resources
-- Help
+---------------
+1. When you go to the RailStocks site for the first time, you will be asked to Register or Log in.
 
-2. Upon registering for a RailStocks account, you will see:
--
-- your e-mail address (which is your username)
-- The RailStocks app:
-- - Create Portfolio button to create a stock portfolio or multiple portfolios.  You may then:
-- - - Save the portfolio(s)
-- - - Add and delete stock tickers in a portfolio
-- - - Delete the portfolio(s)
-- - - Evaluate a portfolio of stocks on a variety of metrics that are available through Yahoo Finance
+2. After registering or logging into your RailStocks account, you will enter the RailStocks app.  You may then:
+- Create a stock portfolio(s)
+- Edit (add or delete stock tickers) a portfolio
+- Delete a portfolio(s)
+- Evaluate a portfolio of stocks on a variety of metrics, made available by Yahoo Finance
 
 
 Key Gems Used
