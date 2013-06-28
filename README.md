@@ -23,15 +23,17 @@ User Experience
 1. When you go to the RailStocks site for the first time, you will be asked to Register or Log in.
 
 2. After registering or logging into your RailStocks account, you will enter the RailStocks app.  You may then:
-- Create a stock portfolio(s)
-- Edit (add or delete stock tickers) a portfolio
-- Delete a portfolio(s)
-- Evaluate a portfolio of stocks on a variety of metrics, made available by Yahoo Finance
+
+-- Create a stock portfolio(s)
+-- Edit (add or delete stock tickers) a portfolio
+-- Delete a portfolio(s)
+-- Evaluate a portfolio of stocks on a variety of metrics, made available by Yahoo Finance
 
 
 Key Gems Used
 --------
 Devise - user sign-in and authentication
+
 YahooFinance - for stock data
 
 Bugs
