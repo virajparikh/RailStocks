@@ -14,20 +14,26 @@ Project Status
 Features
 --------
 1. User sign-in and authentication
-2. Portfolio(s) creation
-3. Add, edit, delete tickers in a portfolio
-4. View a pre-packaged stock and valuation summary of your portfolio
+2. Portfolio(s) creation, edit and delete functionality
+3. View a pre-packaged valuation summary table of your portfolio
 
 User Experience
 ---------------
 1. When you go to the RailStocks site for the first time, you will be asked to Register or Log in.
 
 2. After registering or logging into your RailStocks account, you will enter the RailStocks app.  You may then:
-
--- Create a stock portfolio(s)
--- Edit (add or delete stock tickers) a portfolio
--- Delete a portfolio(s)
--- Evaluate a portfolio of stocks on a variety of metrics, made available by Yahoo Finance
+ - Create as many stock portfolios as you like
+ - Edit (add or delete stock tickers) a portfolio
+ - Delete portfolio(s)
+ - Evaluate a portfolio of stocks on a variety of valuation metrics (made available by Yahoo Finance), including:
+ - - Market cap
+ - - Dividend yield
+ - - Price/Sales
+ - - Price/Earnings
+ - - Price/Book
+ - - PEG ratio
+ - - Short Interest
+ - - Short & Long term momentum, based on stock price versus 50- and 200-day moving averages
 
 
 Key Gems Used
